@@ -1,0 +1,61 @@
+
+:root{
+    --gray5A: #5A5A5A;
+    --grayC2: #C2C2C2;
+    --grayDE: #DEDEDE;
+    --grayF4: #F4F4F4;
+    --gray63: #6380A6; 
+    --grayPH: rgba(45, 49, 66, 0.35);
+    --grayHO: rgb(163, 171, 209);
+    --whiteE5: #E5E5E5;
+    --whiteFF: #FFFFFF;
+    --black2D: #2D3142;
+    --orangeEF: #EF8354;
+    --whiteBord:#E5E7EA;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Bold.ttf');
+}
+@font-face {
+    font-family: 'Rubik';
+    font-weight: 500;
+    font-style: normal;
+    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Medium.ttf');
+}
+@font-face {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-style: normal;
+    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Regular.ttf');
+}
+@font-face {
+    font-family: 'Rubik';
+    font-weight: 300;
+    font-style: normal;
+    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Light.ttf');
+}
+*,
+*::before
+*::after
+{
+    box-sizing: border-box;
+}
+p{
+    margin: 0;
+}
+body{
+    box-sizing: border-box;
+    font-family: Rubik, Helvetica, sans-serif;
+    padding-top: 100px;
+}
+ul, ol{
+    list-style: none;
+}
+ h3, h4{
+    margin: 0;
+}

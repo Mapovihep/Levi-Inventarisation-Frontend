@@ -1,0 +1,7 @@
+.container__ItemsPage{
+    display: flex;
+    flex-wrap: wrap;
+}
+.title__ItemsPage{
+    width: 100%;
+}

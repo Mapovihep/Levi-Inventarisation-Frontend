@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+}
+.fixedBg__Header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-height: 80px;
+    background-color: var(--black2D);
+    z-index: 1000;
+}
+.container__Header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--whiteFF);
+    max-width: 1620px; 
+    margin: auto;
+}
+.title__Header{
+    font-size: 18px;
+    font-family: "Rubik";
+    font-weight: 700;
+}
+.nav_list__Header{
+    display: flex;
+    margin: 0;
+}
+.nav_link__Header{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--gray5A);
+    font-family: "Rubik";
+    font-size: 18px;
+    font-weight: 400;
+}
+.nav_link__Header:not(:last-child){
+    margin-right: 30px;
+}
+.nav_link__Header:hover{
+    text-decoration: underline;
+}
+.nav_link__Header>a{
+    text-decoration: none;
+    padding: 10px;
+}
+.nav_link__Header>a:visited{
+    color: var(--whiteFF);
+}
+.search__Header{
+    box-sizing: border-box;
+    max-width: 300px;
+    min-width: 150px;
+    height: 50px;
+    margin: 15px 0;
+    padding: 20px 15px  20px 20px ;
+    line-height: 14px;
+    font-weight: 300;
+    font-size: 14px;
+    background-color: var(--whiteFF);
+    border: none;
+    position: relative;
+    z-index: 0;
+}
+
+.search__Header::before{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url("C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/img/3844432-magnifier-search-zoom_110300.png");
+    content: " ";
+    width: 14px;
+    height: 14px;
+    z-index: 1;
+}

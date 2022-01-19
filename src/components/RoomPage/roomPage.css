@@ -1,0 +1,42 @@
+.container__RoomPage{
+    width: 100%;
+    padding: 40px 150px;
+    margin: auto;
+}
+.addRoomBtn_RoomPage{
+    position: relative;
+    background-color: var(--orangeEF);
+    color: var(--whiteFF);
+    width: 131px;
+    height: 50px;
+    border: 1px solid var(--whiteBord);
+    margin-right: 50px;
+    z-index: 1;
+}
+.addRoomBtn_RoomPage::before{
+    position: absolute;
+    content: "";
+    border-right: 1px solid  #E5E7EA;
+    width: 100px;
+    height: 50px;
+    top: 0;
+    right: -25px;
+    z-index: 2;
+}
+.search_RoomPage{
+    height: 50px;
+    padding: 20px 15px;
+    color: var(--grayPH);
+    border: 1px solid var(--whiteBord);
+}
+.filter__RoomPage{
+    display: flex;
+}
+.list__RoomPage{
+    margin: 20px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
