@@ -1,0 +1,50 @@
+.flex{
+    display:flex;
+    align-items: top;
+    position: relative;
+    margin-right: 20px;
+}
+.arrowContainer{
+    width: 11px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    right: -15px;
+    top:-5px;
+}
+.columnWithFilterTitle{
+    display: block;
+    margin-right: 5px;
+}
+.arrowUp, .arrowDown{
+    display: block;
+    position: relative;
+    margin-top: -0px;
+    width: 10px; 
+    height: 10px;
+    padding: 4px;
+    margin-bottom: 7px;
+    background: none;
+    border: none;
+    /* outline: 1px solid red; */
+    z-index: -1;
+}
+
+.arrowUp::after, .arrowDown::after{
+    position: absolute;
+    content: " ";
+    top: 1px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+.arrowUp::after{
+    background-image: url("/public/img/FilterArrowUp.svg");
+}
+.arrowDown::after{
+    background-image: url("/public/img/FilterArrowDown.svg");
+}

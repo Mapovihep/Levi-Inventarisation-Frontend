@@ -4,7 +4,7 @@ import "./categoryTable.css"
 type ICategoryTable = {
     categoryTitles: string[]
 }
-export const CategoryTable: React.FC<ICategoryTable> = (props) => {
+export const CategoryTable: React.FC<ICategoryTable> = ({categoryTitles}) => {
     return (
         <div>
             <button className="addCategory__ItemsPage">+ Add Category</button>
@@ -13,7 +13,7 @@ export const CategoryTable: React.FC<ICategoryTable> = (props) => {
                 <li className="columnTitle__ItemsPage">NUMBER OF PAGE</li>
             </ul>
             <ul className="categoryList__ItemsPage">
-                {props.categoryTitles.map(title =><li className="category__ItemsPage"><a>{title}</a></li>)}
+                {categoryTitles.map(title =><li className="category__ItemsPage"><a>{title}</a></li>)}
             </ul>
         </div>
     )

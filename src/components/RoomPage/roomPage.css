@@ -1,17 +1,14 @@
 .container__RoomPage{
     width: 100%;
-    padding: 40px 150px;
     margin: auto;
+    position: relative;
 }
 .addRoomBtn_RoomPage{
-    position: relative;
-    background-color: var(--orangeEF);
-    color: var(--whiteFF);
     width: 131px;
     height: 50px;
-    border: 1px solid var(--whiteBord);
-    margin-right: 50px;
-    z-index: 1;
+}
+.addRoomBtn_RoomPage:hover{
+    opacity: 0.8;
 }
 .addRoomBtn_RoomPage::before{
     position: absolute;
@@ -37,6 +34,22 @@
     padding: 0;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-
+    flex-wrap: wrap;
+}
+.inactiveAll__RoomPage{
+    position: relative;
+    width: 100%;
+    height: 100vw;
+    z-index: 0;
+}
+.inactiveAll__RoomPage::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100vw;
+    top:-90px;
+    left:-40px;
+    z-index: 100;
+    opacity: 0.5;
+    background-color: black;
 }

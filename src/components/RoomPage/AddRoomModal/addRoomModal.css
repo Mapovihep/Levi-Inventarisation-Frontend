@@ -1,0 +1,58 @@
+.addedRoomsList__RoomPage{
+    width: 640px;
+    height: calc(100vh);
+    margin-top: -20px;
+    margin-left: auto;
+    background: var(--whiteFF);
+    position: relative;
+    padding: 70px 70px 0px 70px;
+    outline: 1px solid var(--grayEF);
+}
+.titleAddRoom__RoomPage{
+    margin-bottom: 40px;
+}
+.addRoomBtn__RoomPage{
+    width: 138px;
+    height: 50px;
+}
+.addedRoom__RoomPage{
+    position: relative;
+}
+.addRoomInputTitle__RoomPage{
+    margin-bottom: 15px;
+    margin-top: 40px;
+    font-size: 16px;
+    line-height: 19px;
+}
+.addRoomInput__RoomPage{
+    width: 500px;
+    height: 50px; 
+    padding: 20px 15px;
+    margin-bottom: 35px;
+}
+.btnAddRoomGroup__RoomPage{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    bottom: 0;
+}
+.deleteRoomInputTitle__RoomPage{
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border: none;
+    background: none;
+    background-image: url(/public/img/DeleteAddRoomInput.svg);
+    position: absolute;
+    left: -36px;
+    top: 48px;
+}
+.saveAddRoom__RoomPage, .closeAddRoom__RoomPage{
+    display: block;
+    width: 83px;
+    height: 50px;
+    margin-right: 30px;
+}

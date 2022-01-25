@@ -10,3 +10,20 @@
     line-height: 19px;
     color: rgba(79, 93, 117, 0.5);
 }
+.categoryList__ItemsPage{
+    outline: 1px solid var(--gray5A);
+}
+.category__ItemsPage{
+    outline: 1px solid red;
+}
+.addCategory__ItemsPage{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.5px;
+    background-color: var(--orangeEF);
+    color: var(--whiteFF);
+    width: 160px;
+    height: 50px;
+    border: 1px solid var(--whiteBord);
+    padding: 18px 25px;
+}

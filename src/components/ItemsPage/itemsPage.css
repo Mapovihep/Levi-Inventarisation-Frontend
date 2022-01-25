@@ -1,6 +1,7 @@
 .container__ItemsPage{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .title__ItemsPage{
     width: 100%;

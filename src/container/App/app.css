@@ -19,25 +19,25 @@
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Bold.ttf');
+    src: url('/public/fonts/static/Rubik-Bold.ttf');
 }
 @font-face {
     font-family: 'Rubik';
     font-weight: 500;
     font-style: normal;
-    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Medium.ttf');
+    src: url('/public/fonts/static/Rubik-Medium.ttf');
 }
 @font-face {
     font-family: 'Rubik';
     font-weight: 400;
     font-style: normal;
-    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Regular.ttf');
+    src: url('/public/fonts/static/Rubik-Regular.ttf');
 }
 @font-face {
     font-family: 'Rubik';
     font-weight: 300;
     font-style: normal;
-    src: url('C:/Users/Leviossa IT/Desktop/React/ASP Net/LeviInventarizationFrontendWithTS/Inventarization/public/fonts/static/Rubik-Light.ttf');
+    src: url('/public/fonts/static/Rubik-Light.ttf');
 }
 *,
 *::before
@@ -58,4 +58,21 @@ ul, ol{
 }
  h3, h4{
     margin: 0;
+}
+.addButton{
+    position: relative;
+    background-color: var(--orangeEF);
+    color: var(--whiteFF);
+    border: 1px solid var(--whiteBord);
+    margin-right: 50px;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.5px;
+}
+.modalInput{
+    width: 500px;
+    height: 50px; 
+    padding: 20px 15px;
+    color: var(--grayC2)
 }

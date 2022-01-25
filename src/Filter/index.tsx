@@ -1,21 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import "./filter.css"
-export const Filter = () => {
-    const [state, setState] = useState({name:"filterName", opened: false});
-    const clickHandler = (Event:React.ChangeEvent) => {
-        setState({...state, opened: !state.opened});
+
+interface IPropsFilter {
+    options: string[]
+}
+interface IPointsFilter{
+    name: string,
+    flag: boolean,
+}
+
+export const Filter: React.FC<IPropsFilter> = (options) => {
+    const [opened, setOpened] = useState(false);
+    const [points, setPoints] = useState<IPointsFilter[]>([]);
+
+    useEffect(()=>{
+        setPoints(options.options.map(x=>({name:x, flag:false})));
+    }, [opened])
+
+    const clickHandler = (E: React.MouseEvent) => {
+        setOpened(!opened);
     }
-    const onKeyPressed = (Event:React.KeyboardEvent) => {
-        console.log("Pressed");
+    const selectedOption = (E: React.ChangeEvent) => {
+        let el = E.currentTarget;
+        console.log(el)
+        let needed = points.filter(x=> x.name === el?.id)[0];
+        let i = points.indexOf(needed);
+        points[i].flag=!points[i].flag;
+        setPoints(points)        
     }
     return (
     <div className={`filter`} placeholder="Search">
-        <span className={`filterTitle`}>{state.name}<input className="hiddenCheck" type="checkbox" onChange={clickHandler}/></span> 
-        {state.opened&&
+        <span onClick={clickHandler} className={`filterTitle`}>
+            Select filter options
+            <input className="hiddenCheck" type="checkbox" /></span> 
+        {opened&&
         <ul className="filterOptions">
-            <li className={`filterOption`}><input className="selectCheck" type="checkbox"/>Выбор 1</li> 
-            <li className={`filterOption`}><input className="selectCheck" type="checkbox"/>Выбор 2</li> 
+            {points.length!=0 ? 
+            points.map(x=>
+                    <label htmlFor={x.name}>
+                        <li 
+                        key={Math.random()} 
+                        className={`filterOption`}>
+                            <input id={x.name} onChange={selectedOption} className="selectCheck" type="checkbox"/>{x.name}
+                        </li>
+                        </label>)
+                : <li className={`filterOption`}>
+                <input className="selectCheck" type="checkbox"/>There are no needed opportunities
+                </li>} 
+            
         </ul>}
     </div>)
 }

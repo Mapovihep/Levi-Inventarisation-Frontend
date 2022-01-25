@@ -1,20 +1,19 @@
 import React from 'react';
-import {useState} from 'react';
-import { Filter } from '../../Filter';
 import { RoomPage } from '../RoomPage';
-import mainPage from './mainPage.css';
-import "./mainPage.css"
+import "./mainPage.css";
 import { ItemsPage } from '../ItemsPage';
-type IMainPage = {
-    name: string,
-    surname: string,
-}
+import { Route, Routes } from 'react-router';
+import { Header } from '../Header';
+
+
 export const MainPage = () => {
-    const [state, setState] = useState({});
     return (
         <div className="contentContainer__MainPage">
-            <ItemsPage/>
-            {/* <RoomPage/> */}
+            <Routes>
+                <Route path="/Rooms" element={<RoomPage/>}/>
+                <Route path="/Items" element={<ItemsPage/>}/>
+                <Route path="/" element={<RoomPage/>}/>
+            </Routes>
         </div>
     )
 }

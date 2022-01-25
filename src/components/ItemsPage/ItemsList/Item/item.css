@@ -1,0 +1,76 @@
+*{
+    box-sizing: border-box;
+}
+.item__ItemList{
+    display: block;
+    width: 1165px;
+}
+.itemInfo__ItemList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 20px 70px 20px 0;
+}
+.itemParam__ItemList:not(:last-child){
+    margin-right: 30px;
+}
+
+.btngroup{
+    display: flex;
+}
+.deleteIcon, .deleteIcon::after, .editIcon, .editIcon::after{
+    margin-top: -2px;
+    height: 18px;
+    width: 18px;
+}
+.deleteIcon, .editIcon{
+    position: relative;
+    background: none;
+    border: none;
+}
+.deleteIcon::after{
+    background-image: url("/public/img/DeleteIcon.svg");
+}
+.editIcon::after{
+    background-image: url("/public/img/EditIcon.svg");
+}
+.deleteIcon::after, .editIcon::after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: " ";
+    background-size: cover;
+}
+.deleteIcon:hover, .editIcon:hover{
+    opacity: 0.5;
+}
+.QRCode{
+    width: 97px;
+}
+.name{
+    width: 142px;
+}
+.status{
+    width: 98px;
+}
+.date{
+    width: 97px;
+}
+.price{
+    width: 104px;
+}
+.room{
+    width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.deffects{
+    width: 162px;
+    text-align: right;
+}
+.mr24{
+    margin-right: 24px;
+}
