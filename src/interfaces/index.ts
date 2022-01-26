@@ -1,6 +1,6 @@
 export interface IItem {
     QRCode: string,
-    Name: string,
+    name: string,
     Status: boolean,
     Date: string,
     Price: string,
@@ -8,14 +8,14 @@ export interface IItem {
     DeffectsAmmount: number,
     CreatedAt: string
 }
-export const itemBuilder = (Name: string, Date: string)=>{
+export const itemBuilder = (name: string, Date: string)=>{
     const newItem: IItem = {
-        QRCode: Name.substring(7),
-        Name: Name,
+        QRCode: name.substring(7),
+        name: name,
         Status: false,
         Date: Date,
-        Price: Name.substring(7),
-        Room: Name.substring(7),
+        Price: name.substring(7),
+        Room: name.substring(7),
         DeffectsAmmount: 0,
         CreatedAt: "now"
     }
@@ -23,15 +23,15 @@ export const itemBuilder = (Name: string, Date: string)=>{
 }
 export interface IRoom {
     Id: string,
-    Name: string,
+    name: string,
     InventoryLots: IItem[],
     InventorySetups: ISetup[],
     CreatedAt: string
 }
-export const roomBuilder = (Name: string, CreatedAt: string) : IRoom=>{
+export const roomBuilder = (name: string, CreatedAt: string) : IRoom=>{
     const newItem: IRoom = {
         Id: '',
-        Name: Name,
+        name: name,
         CreatedAt: CreatedAt,
         InventoryLots: [],
         InventorySetups:[]
@@ -40,15 +40,15 @@ export const roomBuilder = (Name: string, CreatedAt: string) : IRoom=>{
 }
 export interface IDepartment{
     Id: string,
-    Name: string,
+    name: string,
     InventoryLots: IItem[],
     InventorySetups: ISetup[]
 }
 export interface ISetup{
     Id: string,
-    Name: string,
+    name: string,
     Category: string,
-    RoomName: string,
+    Roomname: string,
     OwnerId: string,
     Defects: string,
     UpdatedBy: string,
@@ -59,8 +59,8 @@ export interface IUser{
     Id: string,
     EMail: string,
     Password: string,
-    FirstName: string,
-    LastName: string,
+    Firstname: string,
+    Lastname: string,
     Phone: string,
     Token: string,
     isAdmin: boolean,
@@ -71,5 +71,5 @@ export interface IUser{
 }
 export interface action{
     type: string,
-    payload: any
+    payload?: any
 }

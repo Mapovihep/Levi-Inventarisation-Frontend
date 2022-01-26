@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Filter } from '../../Filter';
+import { Filter } from '../Filter';
 import { IItem } from '../../interfaces';
 import { CategoryTable } from './CategoryTable';
 import { ItemsList } from './ItemsList';

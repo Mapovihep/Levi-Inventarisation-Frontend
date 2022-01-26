@@ -1,5 +1,6 @@
 import { Modal } from '@mui/material';
 import React, { useState } from 'react'
+import { roomFetchActions } from '../../../actionsTypes/roomActionTypes';
 import { IRoom, roomBuilder } from '../../../interfaces';
 import { useAppDispatch } from '../../../reducers/hooks';
 import "./addRoomModal.css"
@@ -24,7 +25,7 @@ const AddRoom: React.FC<AddRoomProps> = ({ openedModal, openAddBar}) => {
         setState(s=>({...s, ammount: needed}))
     }
     const handleForm = (E: React.MouseEvent<HTMLButtonElement>):void => {
-        dispatch({type: "ADD_ROOM_FETCH", payload: state.ammount});
+        dispatch({type: roomFetchActions.ADD_ROOMS_FETCH, payload: state.ammount});
         let arr: IRoom[] = [];
         dispatch({type: "OPEN_ADD_ROOM_SIDEBAR", payload: false});
         setState(s=>({ammount: []}))
@@ -33,7 +34,7 @@ const AddRoom: React.FC<AddRoomProps> = ({ openedModal, openAddBar}) => {
         const changedRoom = state.ammount.filter(x=>x.CreatedAt===E.target.id)[0];
         const ammount : IRoom[] = state.ammount;
         const i: number = state.ammount.indexOf(changedRoom);
-        ammount[i].Name=E.target.value;
+        ammount[i].name=E.target.value;
     }
     return(<Modal
         open={openedModal}
@@ -43,7 +44,7 @@ const AddRoom: React.FC<AddRoomProps> = ({ openedModal, openAddBar}) => {
                 <h2 className="titleAddRoom__RoomPage">Add Room</h2>
             </li>
             {state.ammount.map(r=>(<li  className="addedRoom__RoomPage" key={r.CreatedAt}>
-                <p className="addRoomInputTitle__RoomPage">{r.Name}</p>
+                <p className="addRoomInputTitle__RoomPage">{r.name}</p>
                 <button onClick={()=>deleteName(r.CreatedAt)} className="deleteRoomInputTitle__RoomPage"></button>
                 <input onChange={changeName} id={r.CreatedAt} placeholder='Room Name' className="addRoomInput__RoomPage modalInput" type="text" />
             </li>))}

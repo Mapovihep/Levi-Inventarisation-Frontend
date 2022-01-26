@@ -19,7 +19,7 @@ export const Item: React.FC<ItemListProps> = ({itemParams}) => {
         <ul className="itemInfo__ItemList">
             <li style={{backgroundColor:state.checkboxStyle}} className="itemParam__ItemList checkboxLable"><input onChange={checkEvent} type="checkbox" className="checkbox"/></li>
             <li className="itemParam__ItemList w97 QRCode">{itemParams.QRCode}</li>
-            <li className="itemParam__ItemList w142 name">{itemParams.Name}</li>
+            <li className="itemParam__ItemList w142 name">{itemParams.name}</li>
             <li className="itemParam__ItemList w98 status">{itemParams.Status ? "active" : "unactive"}</li>
             <li className="itemParam__ItemList w98 date">{itemParams.Date}</li>
             <li className="itemParam__ItemList w104 price">{itemParams.Price}</li>

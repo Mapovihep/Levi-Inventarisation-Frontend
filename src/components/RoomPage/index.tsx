@@ -1,20 +1,27 @@
 // import React, { ChangeEvent, MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
-import { Filter } from '../../Filter';
+import { Filter } from '../Filter';
 import { Room } from './Room';
 import "./roomPage.css"
 import AddRoom from './AddRoomModal';
 import { IRoom } from '../../interfaces';
 import { useAppDispatch, useAppSelector } from '../../reducers/hooks';
 import { RootState } from '../../store';
+import { roomFetchActions } from '../../actionsTypes/roomActionTypes';
 
 export const RoomPage: React.FC = () => {
+
+    const dispatch = useAppDispatch();    
+    
+    useEffect(()=>{
+        dispatch({type: roomFetchActions.GET_ROOMS_FETCH})
+    }, [])
+
     const openedModal: boolean = useAppSelector((s:RootState)=>s.Rooms.openedModal);
     const roomInfo : IRoom[] = useAppSelector((s:RootState) => s.Rooms.Rooms);
     const filterOptions : string[] = useAppSelector((s:RootState) => s.Rooms.FilterOptions);
     const [search, setSearch] = useState<string>('');
-    const dispatch = useAppDispatch();
-    
+
     const openAddBar = (E : React.MouseEvent<HTMLButtonElement>): void => {
         !openedModal ? dispatch({type: "OPEN_ADD_ROOM_SIDEBAR", payload: true}) 
         : dispatch({type: "OPEN_ADD_ROOM_SIDEBAR", payload: false});
@@ -32,7 +39,7 @@ export const RoomPage: React.FC = () => {
                 <Filter options={filterOptions}></Filter>
             </div>
             <ul className="list__RoomPage">
-                {roomInfo.filter(x=>x.Name.includes(search)).map(x=><Room Name={x.Name} 
+                {roomInfo.filter(x=>x.name.includes(search)).map(x=><Room name={x.name} 
                 Id={x.Id} 
                 InventoryLots={x.InventoryLots} 
                 InventorySetups={x.InventorySetups}

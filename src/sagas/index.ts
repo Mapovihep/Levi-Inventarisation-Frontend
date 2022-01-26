@@ -1,29 +1,17 @@
 import {takeEvery, call, SagaReturnType} from 'redux-saga/effects' 
-// import {
-//     SIGN_UP_FETCH,
-//     LOG_IN_FETCH,
-// } from '../actions/SagaActions'
-import logIn from './Login/logIn';
-import signUp from './SignUp/signUp';
-import { IRoom } from '../interfaces'
-import addRooms from './RoomPage/AddRooms';
-// export function* signUpWorker(data) {
-//     yield call(signUp, data.state)
-// }
-// export function* logInWorker(data) {
-//     yield call(logIn, data.state)
-// }
+import getRoomsFetch from './RoomPage/getRooms';
+import * as roomActions from '../actionsTypes/roomActionTypes';
+import addRoomsFetch from './RoomPage/addRooms';
 
-export function* addRoomsWorker({type, payload}:{
-    type: string,
-    payload: IRoom[]
-}){
-    console.log(payload);
-    const {casualResult} = yield call(addRooms, payload);
-    console.log(casualResult);
+export function* addRoomsWorker({type, payload}:roomActions.addRoomsAction){
+    yield call(addRoomsFetch, payload);
+}
+export function* getRoomsWorker({type}:roomActions.getRoomsAction){
+    yield call(getRoomsFetch);
 }
 export function* watcherSaga(){
-    yield takeEvery("ADD_ROOM_FETCH", addRoomsWorker)
+    yield takeEvery(roomActions.roomFetchActions.ADD_ROOMS_FETCH, addRoomsWorker)
+    yield takeEvery(roomActions.roomFetchActions.GET_ROOMS_FETCH, getRoomsWorker)
     // yield takeEvery(LOG_IN_FETCH, logInWorker)
     // yield takeEvery(SIGN_UP_FETCH, signUpWorker)
 }
