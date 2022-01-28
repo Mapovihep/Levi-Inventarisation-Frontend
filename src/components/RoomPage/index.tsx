@@ -40,10 +40,10 @@ export const RoomPage: React.FC = () => {
             </div>
             <ul className="list__RoomPage">
                 {roomInfo.filter(x=>x.name.includes(search)).map(x=><Room name={x.name} 
-                Id={x.Id} 
-                InventoryLots={x.InventoryLots} 
-                InventorySetups={x.InventorySetups}
-                CreatedAt={x.CreatedAt} 
+                id={x.id} 
+                inventoryLots={x.inventoryLots} 
+                inventorySetups={x.inventorySetups}
+                createdAt={x.createdAt} 
                 key={Math.random()}></Room>)}
             </ul>
             <AddRoom  openedModal={openedModal} openAddBar={openAddBar} />

@@ -1,73 +1,88 @@
 export interface IItem {
-    QRCode: string,
+    qRCode: string,
     name: string,
-    Status: boolean,
-    Date: string,
-    Price: string,
-    Room: string,
-    DeffectsAmmount: number,
-    CreatedAt: string
+    status: boolean,
+    date: string,
+    price: string,
+    room: string,
+    deffectsAmmount: number,
+    createdAt: string
 }
 export const itemBuilder = (name: string, Date: string)=>{
     const newItem: IItem = {
-        QRCode: name.substring(7),
+        qRCode: name.substring(7),
         name: name,
-        Status: false,
-        Date: Date,
-        Price: name.substring(7),
-        Room: name.substring(7),
-        DeffectsAmmount: 0,
-        CreatedAt: "now"
+        status: false,
+        date: Date,
+        price: name.substring(7),
+        room: name.substring(7),
+        deffectsAmmount: 0,
+        createdAt: "now"
     }
     return newItem;
 }
 export interface IRoom {
-    Id: string,
+    id: string,
     name: string,
-    InventoryLots: IItem[],
-    InventorySetups: ISetup[],
-    CreatedAt: string
+    inventoryLots: IItem[],
+    inventorySetups: ISetup[],
+    createdAt: string
 }
-export const roomBuilder = (name: string, CreatedAt: string) : IRoom=>{
+export const roomBuilder = (name: string, createdAt: string) : IRoom=>{
     const newItem: IRoom = {
-        Id: '',
+        id: '',
         name: name,
-        CreatedAt: CreatedAt,
-        InventoryLots: [],
-        InventorySetups:[]
+        createdAt: createdAt,
+        inventoryLots: [],
+        inventorySetups:[]
     }
     return newItem;
 }
 export interface IDepartment{
-    Id: string,
+    id: string,
     name: string,
-    InventoryLots: IItem[],
-    InventorySetups: ISetup[]
+    inventoryLots: IItem[],
+    inventorySetups: ISetup[]
 }
 export interface ISetup{
-    Id: string,
+    id: string,
     name: string,
-    Category: string,
-    Roomname: string,
-    OwnerId: string,
-    Defects: string,
-    UpdatedBy: string,
-    UpdatedAt: string,
-    InventoryLots: IItem[]
+    category: string,
+    roomname: string,
+    ownerId: string,
+    defects: string,
+    updatedBy: string,
+    updatedAt: string,
+    inventoryLots: IItem[]
 }
+
 export interface IUser{
-    Id: string,
-    EMail: string,
-    Password: string,
-    Firstname: string,
-    Lastname: string,
-    Phone: string,
-    Token: string,
-    isAdmin: boolean,
-    UpdatedBy: string,
-    UpdatedAt: string
-    InventoryLots: IItem[],
-    InventorySetups: ISetup[]
+    id: string,
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    phone?: string,
+    isAdmin?: boolean,
+    updatedBy?: string,
+    updatedAt?: string
+    inventoryLots: IItem[],
+    inventorySetups: ISetup[]
+}
+export const userBuilder = (email: string, 
+    password: string,
+    firstName?: string, 
+    lastName?: string,) =>{
+    const newUser : IUser ={
+        id: "",
+        email: email,
+        password: password,
+        firstName: firstName||"",
+        lastName: lastName||"",
+        inventoryLots: [],
+        inventorySetups: []
+    }
+    return newUser;
 }
 export interface action{
     type: string,

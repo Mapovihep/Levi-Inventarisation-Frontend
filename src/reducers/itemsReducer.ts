@@ -11,12 +11,12 @@ const initialState : itemsReducer = {
 }
 
 export const itemsReducer = (state = initialState, action:action) =>{
-       switch (action.type) {
+    switch (action.type) {
         case "ADD_ITEM":
             return {...state, Items:[...state.Items, action.payload]}
         case "OPEN_ADD_ITEM_SIDEBAR":
-        return {...state, openedModal: action.payload};
+            return {...state, openedModal: action.payload};
         default:
             return state
-       }
+    }
 }

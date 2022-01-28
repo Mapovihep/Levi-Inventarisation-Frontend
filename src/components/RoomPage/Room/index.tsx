@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { IRoom } from '../../../interfaces'
 import './room.css'
 
-export const Room: React.FC<IRoom> = ({name, Id}) =>{
-    const [state, setState] = useState({name, Id, editMode: false})
+export const Room: React.FC<IRoom> = ({name, id}) =>{
+    const [state, setState] = useState({name, id, editMode: false})
     const editHandler = (E: React.MouseEvent<HTMLButtonElement>) : void =>{
         let changedName: string | undefined = E.currentTarget.parentNode?.querySelector("input")?.value;
         !state.editMode ? setState(state => ({...state, editMode: true})) 
