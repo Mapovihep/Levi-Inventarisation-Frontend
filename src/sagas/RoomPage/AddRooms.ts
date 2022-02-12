@@ -3,21 +3,17 @@ import axios, { AxiosResponse } from 'axios'
 import { IRoom } from '../../interfaces'
 import { addRooms } from '../../actionCreators/roomActionCreator';
 
-interface requestInfo {
-    Name: string,
-    CreatedAt: string
-}
 
-const axiosAddRooms = (rooms: requestInfo[]) =>{
-    const token : string = localStorage.getItem('token');
+const axiosAddRooms = (rooms: IRoom[]) =>{
+    const token : string = localStorage.getItem('token') || "";
     if(token!=null)
     {
         const headers = {
             'Content-Type': 'application/json;charset=utf-8',
-            'Authorization': token
+            'Authorization': 'Bearer ' + token
           }
         return axios.post<IRoom[]>(
-            "http://localhost:3001/api/rooms", 
+            "http://localhost:3001/rooms/addRange", 
             JSON.stringify(rooms),
             {
                 headers
@@ -28,13 +24,13 @@ const axiosAddRooms = (rooms: requestInfo[]) =>{
 
 
 export default function* addRoomsFetch(data: IRoom[]) {
-    const requestInfo: requestInfo[] = data.map(x=>({Name: x.name, CreatedAt: x.createdAt}))
     try{
-        const addRoom: AxiosResponse<IRoom[]>  = yield call(axiosAddRooms, requestInfo);
-            // if(addRoom.status === 200) {
+        const addRoom: AxiosResponse<IRoom[]>  = yield call(axiosAddRooms, data);
+            if(addRoom.status === 200) {
             const response = addRoom.data;
+            console.log(response);
             yield put(addRooms(response));
-            // }
+            }
     }catch(e){
         console.log(e)
     }

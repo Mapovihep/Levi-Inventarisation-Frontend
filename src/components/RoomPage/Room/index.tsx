@@ -1,22 +1,29 @@
 import React, { useState } from 'react'
 import { IRoom } from '../../../interfaces'
+import { useAppDispatch } from '../../../reducers/hooks'
 import './room.css'
+import {roomFetchActions} from '../../../actionsTypes/roomActionTypes'
+import { roomBuilder } from '../../../interfaces'
+import { EditRoom } from '../EditRoomModal'
 
-export const Room: React.FC<IRoom> = ({name, id}) =>{
+export const Room: React.FC<IRoom> = ({name, id, createdAt}) => {
+
     const [state, setState] = useState({name, id, editMode: false})
-    const editHandler = (E: React.MouseEvent<HTMLButtonElement>) : void =>{
-        let changedName: string | undefined = E.currentTarget.parentNode?.querySelector("input")?.value;
-        !state.editMode ? setState(state => ({...state, editMode: true})) 
-        : setState(state => ({...state, name: changedName!==undefined ? changedName : state.name, editMode: false}));
-    } 
-    const changeHandler = (E: React.ChangeEvent<HTMLInputElement>) : void =>{
-        setState(state => ({...state, name:E.target.value}));
+    const [editOpened, setEditOpened] = useState<boolean>(false);
+
+    const openEditBar = (E: React.MouseEvent<HTMLButtonElement>): void =>{
+        setEditOpened(!editOpened);
     }
     return(
         <li className="container__Room">
-            <button onClick={editHandler} className="editBtn__Room">Edit</button>
-            {!state.editMode ? <h3 className="title__Room">{state.name}</h3> 
-            :<input onChange={changeHandler} value={state.name} className="inputName__Room"/>}
+            <EditRoom openedModal={editOpened} 
+                openEditBar={openEditBar}
+                initialName={name} 
+                id={id} 
+                createdAt={createdAt} 
+            />
+            <button onClick={openEditBar} className="editBtn__Room">Edit</button>
+            <h3 className="title__Room">{state.name}</h3> 
         </li>
     )
 }

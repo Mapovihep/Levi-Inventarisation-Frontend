@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+.user__UserList{
+    display: block;
+}
+.users__UserList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+.userParam__UserList{
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.6px;
+    color: var(--linkSecondary);
+}
+.userNameWithAvatar{
+    width: 300px;
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    position: relative;
+}
+.userNameWithAvatar::before{
+    position: absolute;
+    left: -70px;
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 20px;
+}
+

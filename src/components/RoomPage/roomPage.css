@@ -1,11 +1,10 @@
 .container__RoomPage{
-    width: 100%;
-    margin: auto;
-    position: relative;
+
 }
 .addRoomBtn_RoomPage{
     width: 131px;
     height: 50px;
+    border: 1px solid var(--whiteFF);
 }
 .addRoomBtn_RoomPage:hover{
     opacity: 0.8;
@@ -23,9 +22,14 @@
 .search_RoomPage{
     height: 50px;
     padding: 20px 15px;
+    border-radius: 5px;
     color: var(--grayPH);
     border: 1px solid var(--whiteBord);
 }
+.search_RoomPage:hover, :focus{
+    outline: 2px solid var(--grayPH);
+}
+
 .filter__RoomPage{
     display: flex;
 }
@@ -36,6 +40,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .inactiveAll__RoomPage{
     position: relative;
     width: 100%;

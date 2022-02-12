@@ -17,7 +17,7 @@ export const Header = () => {
                 <nav className="nav_panel__Header">
                     <ul className="nav_list__Header">
                         <li className="nav_link__Header"><Link  to="/Rooms">Rooms</Link></li>
-                        <li className="nav_link__Header"><Link  to="/User">User</Link></li>
+                        <li className="nav_link__Header"><Link  to="/Users">User</Link></li>
                         <li className="nav_link__Header"><Link  to="/Items">Items</Link></li>
                     </ul>
                 </nav>

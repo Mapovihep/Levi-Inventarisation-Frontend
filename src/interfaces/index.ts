@@ -6,10 +6,12 @@ export interface IItem {
     price: string,
     room: string,
     deffectsAmmount: number,
-    createdAt: string
+    createdAt: string,
+    id: string
 }
 export const itemBuilder = (name: string, Date: string)=>{
     const newItem: IItem = {
+        id: "11111111111",
         qRCode: name.substring(7),
         name: name,
         status: false,
@@ -28,11 +30,11 @@ export interface IRoom {
     inventorySetups: ISetup[],
     createdAt: string
 }
-export const roomBuilder = (name: string, createdAt: string) : IRoom=>{
+export const roomBuilder = (name: string, createdAt?: string, id?: string) : IRoom=>{
     const newItem: IRoom = {
-        id: '',
+        id: id||'',
         name: name,
-        createdAt: createdAt,
+        createdAt: createdAt||'',
         inventoryLots: [],
         inventorySetups:[]
     }
@@ -65,22 +67,24 @@ export interface IUser{
     phone?: string,
     isAdmin?: boolean,
     updatedBy?: string,
-    updatedAt?: string
+    updatedAt?: string,
     inventoryLots: IItem[],
-    inventorySetups: ISetup[]
+    inventorySetups: ISetup[],
+    status?: boolean
 }
 export const userBuilder = (email: string, 
     password: string,
     firstName?: string, 
     lastName?: string,) =>{
     const newUser : IUser ={
-        id: "",
+        id: "111111111111111111111111",
         email: email,
         password: password,
         firstName: firstName||"",
         lastName: lastName||"",
         inventoryLots: [],
-        inventorySetups: []
+        inventorySetups: [],
+        phone: "8888888888"
     }
     return newUser;
 }

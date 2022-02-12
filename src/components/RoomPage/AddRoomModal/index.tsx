@@ -46,12 +46,12 @@ const AddRoom: React.FC<AddRoomProps> = ({ openedModal, openAddBar}) => {
             {state.ammount.map(r=>(<li  className="addedRoom__RoomPage" key={r.createdAt}>
                 <p className="addRoomInputTitle__RoomPage">{r.name}</p>
                 <button onClick={()=>deleteName(r.createdAt)} className="deleteRoomInputTitle__RoomPage"></button>
-                <input onChange={changeName} id={r.createdAt} placeholder='Room Name' className="addRoomInput__RoomPage modalInput" type="text" />
+                <input onChange={changeName} id={r.createdAt} placeholder='RoomName' className="addRoomInput__RoomPage modalInput" type="text" />
             </li>))}
-            <button onClick={creatingNewRoom} className="addRoomBtn__RoomPage addButton">+ AddRooms</button>
+            <button onClick={creatingNewRoom} className="saveBtn addRoomBtn__RoomPage">+ AddRooms</button>
             <div className="btnAddRoomGroup__RoomPage">
-                <button onClick={handleForm} className="saveAddRoom__RoomPage addButton ">Save</button>
-                <button onClick={openAddBar} className="closeAddRoom__RoomPage addButton ">Close</button>
+                <button onClick={handleForm} className="saveAddRoom__RoomPage saveBtn ">Save</button>
+                <button onClick={openAddBar} className="closeAddRoom__RoomPage closeBtn ">Close</button>
             </div>
         </ul>
     </Modal>)

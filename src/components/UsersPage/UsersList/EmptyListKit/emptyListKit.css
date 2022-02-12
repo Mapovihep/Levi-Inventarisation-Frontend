@@ -1,0 +1,69 @@
+.upperBlock__EmptyListKit{
+    width: 244px;
+    height: 25px;
+    background-color: var(--grayDEE);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    margin-bottom: 15px;
+    margin-top: 80px;
+}
+.whiteCircle__EmptyListKit{
+    margin-left: 9px;
+    width: 9px;
+    height: 9px;
+    border-radius: 4.5px;
+    background-color: var(--whiteFF);
+}
+.whiteCircle__EmptyListKit:first-child{
+    margin-left: 14px;
+}
+
+.bottomBlock__EmptyListKit{
+    width: 244px;
+    height: 25px;
+    background-color:var(--whiteFF);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    border: 1px solid var(--grayDEE);
+    margin-bottom: 15px;
+}
+.grayRectangle__EmptyListKit{
+    height: 10px;
+    border-radius: 3px;
+    background-color:var(--grayDEE);
+}
+.left{
+    width: 45px;
+    margin-left: 14px;
+}
+.center{
+    width: 90px;
+    margin-left: 25px;
+}
+.right{
+    width: 30px;
+    margin-left: 25px;
+}
+.addButtonWithX{
+    width: 34px;
+    height: 34px;
+    background-color: var(--headerPaginationText);
+    background-image: url("/public/img/CrossOnBtn.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 17px;
+    border: none;
+    margin-bottom: 50px;
+}
+.addButtonWithX{
+
+}
+.title__EmptyListKit{
+    margin-bottom: 25px;
+}
+.message__EmptyListKit{
+    color: var(--inactiveTextInTable);
+    margin-bottom: 25px;
+}

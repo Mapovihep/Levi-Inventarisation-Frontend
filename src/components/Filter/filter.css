@@ -5,17 +5,18 @@
     width: 200px;
     height: 50px;
     color: var(--grayPH);
-    border: 1px solid var(--whiteBord);
     background-color: var(--whiteFF);
     position: relative;
     margin-left: 20px;
+    border-radius: 5px;
+    border: none;
 }
 .filterOptions{
     margin: 0;
     padding: 0;
     position: absolute;
     left: -1px; 
-    top: 50px;
+    top: 53px;
     z-index: 10;
 }
 .filterOption, .filterTitle{
@@ -27,6 +28,18 @@
     font-size: 14px;
     display: flex;
     align-items: center;
+    border-radius: 5px;
+    border: 1px solid var(--whiteBord);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.filterTitle:focus{
+    border: none;
+    outline: none;
+}
+.filter:hover{
+    background-color: var(--grayEF); 
+    outline: 2px solid var(--grayPH);
 }
 .filterOption{
     background-color: var(--whiteFF);
@@ -37,13 +50,4 @@
     opacity: 1;
     z-index: 10;
 }
-.selectCheck{
-    margin-right: 12.5px;
-    width: 13.5px;
-    height: 13.5px;
-}
-.hiddenCheck{
-    margin-left: auto;
-    width: 13.5px;
-    height: 13.5px;
-}
+

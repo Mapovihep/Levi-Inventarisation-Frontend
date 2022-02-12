@@ -1,4 +1,3 @@
-
 import {put, call} from 'redux-saga/effects'
 import axios, { AxiosResponse } from 'axios'
 import { loginActionCreator } from '../../actionCreators/userActionCreator';
@@ -18,7 +17,7 @@ const axiosLogin = (user: IUser) =>{
         'Content-Type': 'application/json;charset=utf-8'
       }
       return axios.post<IUser>(
-      "http://localhost:3001/api/sign_in", 
+      "http://localhost:3001/auth/signIn", 
         JSON.stringify(request),
         {
             headers

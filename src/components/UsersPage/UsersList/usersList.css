@@ -1,0 +1,103 @@
+.container__UsersList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addUser__UsersList{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.5px;
+    background-color: var(--orangeEF);
+    color: var(--whiteFF);
+    width: 125px;
+    height: 50px;
+    border: 1px solid var(--whiteBord);
+    padding: 18px 25px;
+}
+.columnTitles__UsersList{
+    border: 1px solid var(--whiteE5);
+    display: flex;
+    width: 100%;
+    padding: 30px 30px 29px 100px;
+}
+.columnTitle__UsersList{
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(79, 93, 117, 0.5);
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+.userName{
+    width: 337px;
+}
+.userStatus{
+    width: 287px;
+}
+.userSetup{
+    width: 345px;
+}
+.userEmail{
+    width: 330px;
+}
+.userPhone{
+    width: 321px;
+}
+.columnTitle__UsersList:first-child{
+    margin-right: 30px;
+}
+.columnTitle__UsersList:not(:first-child){
+    margin-right: 60px;
+}
+.columnTitle__UsersList:not(:first-child)::after{
+    position: absolute;
+    top: -5.5px;
+    right: -30px;
+    content: "";
+    height: 30px;
+    border-right: 1px solid var(--whiteE5)
+}
+.columnTitle__UsersList:last-child::after{
+    border: none;
+}
+.contentList__UsersList{
+    border: 1px solid var(--whiteE5);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 30px 20px 100px ;
+    width: 100%;
+}
+.showMore__UsersList{
+    width: 100%;
+    height: 50px;
+    border: 1px solid var(--grayDEE);
+    color: var(--iconsHeadlineTabsButtons);
+    background-color: var(--whiteFF);
+    padding: 20px;
+}
+.showMore__UsersList:hover{
+    background-color: var(--whiteBord);
+    border: 1px solid var(--gray63);
+}
+.pagination__UserList{
+    display: inline-block;
+    width: 100%;
+    height: 150px;
+}
+.checkboxLable{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--whiteE5);
+    border-radius: 10px;
+}
+.checkboxLable:hover{
+    border-color: var(--gray5E);
+}
+.checkbox{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    opacity: 0;;
+}

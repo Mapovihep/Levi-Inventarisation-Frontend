@@ -1,0 +1,19 @@
+
+.addRoomBtn_UsersPage{
+    width: 131px;
+    height: 50px;
+    border: 1px solid var(--whiteFF);
+}
+.filter__UsersPage{
+    display: flex;
+}
+.search_UsersPage{
+    height: 50px;
+    padding: 20px 15px;
+    border-radius: 5px;
+    color: var(--grayPH);
+    border: 1px solid var(--whiteBord);
+}
+.search_UsersPage:hover, :focus{
+    outline: 2px solid var(--grayPH);
+}

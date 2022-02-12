@@ -20,3 +20,11 @@ export interface getRoomsAction {
     type: string,
     payload: IRoom[]
 }
+export interface updateRoomAction {
+    type: string,
+    payload: IRoom
+}
+export interface deleteRoomAction {
+    type: string,
+    payload: string
+}

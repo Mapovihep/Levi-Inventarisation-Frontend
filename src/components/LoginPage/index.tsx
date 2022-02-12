@@ -15,7 +15,7 @@ export const LoginPage : React.FC = () =>{
     }, [])
 
     const loginHandler = (E:React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(loginFetchActionCreator(userBuilder("mail", "password")));
+        dispatch(loginFetchActionCreator(userBuilder("Admin2", "Admin")));
     }
     
     const logOutHandler = (E:React.MouseEvent<HTMLButtonElement>) => {

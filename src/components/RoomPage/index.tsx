@@ -1,4 +1,4 @@
-// import React, { ChangeEvent, MouseEvent } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { Filter } from '../Filter';
 import { Room } from './Room';
@@ -12,15 +12,16 @@ import { roomFetchActions } from '../../actionsTypes/roomActionTypes';
 export const RoomPage: React.FC = () => {
 
     const dispatch = useAppDispatch();    
-    
+
     useEffect(()=>{
         dispatch({type: roomFetchActions.GET_ROOMS_FETCH})
     }, [])
-
+    
     const openedModal: boolean = useAppSelector((s:RootState)=>s.Rooms.openedModal);
     const roomInfo : IRoom[] = useAppSelector((s:RootState) => s.Rooms.Rooms);
     const filterOptions : string[] = useAppSelector((s:RootState) => s.Rooms.FilterOptions);
-    const [search, setSearch] = useState<string>('');
+
+    const [search, setSearch] = useState<string>(''); 
 
     const openAddBar = (E : React.MouseEvent<HTMLButtonElement>): void => {
         !openedModal ? dispatch({type: "OPEN_ADD_ROOM_SIDEBAR", payload: true}) 
@@ -34,7 +35,7 @@ export const RoomPage: React.FC = () => {
         <div className="container__RoomPage">
             <h2 className="title__RoomPage">Rooms</h2>
             <div className="filter__RoomPage">
-                <button className="addRoomBtn_RoomPage addButton" onClick={openAddBar} >+ Add Room</button>
+                <button className="addRoomBtn_RoomPage addBtn" onClick={openAddBar} >+ Add Room</button>
                 <input onChange={searchInput} className="search_RoomPage" placeholder="Search"/>
                 <Filter options={filterOptions}></Filter>
             </div>

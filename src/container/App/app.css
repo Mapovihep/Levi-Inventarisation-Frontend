@@ -11,7 +11,20 @@
     --whiteFF: #FFFFFF;
     --black2D: #2D3142;
     --orangeEF: #EF8354;
+    --primaryButton: #EF8354;
     --whiteBord:#E5E7EA;
+    --grayDEE: #DEE1E7;
+    --grayPlaceholder: #B6B7BD;
+    --textPaginationText: #2D3142;
+    --iconsHeadlineTabsButtons: rgb(149, 158, 172);
+    --linkSecondary: #6380A6;
+    --statusActive:  #FDECE5;
+    --statusInactive :  #EFF2F6;
+    --statusInactiveDelBtn: #EFF2F6;
+    --statusActiveEA: #EAECEE;
+    --headerPaginationText: #2D3142;
+    --inactiveTextInTable: #A7AEBA;
+    --iconsHeadlinesTableButtons: #959EAC;
 }
 
 @font-face {
@@ -52,27 +65,114 @@ body{
     box-sizing: border-box;
     font-family: Rubik, Helvetica, sans-serif;
     padding-top: 100px;
+    font-size: 14px;
+    text-overflow: ellipsis;
 }
 ul, ol{
     list-style: none;
 }
- h3, h4{
+h3, h4{
     margin: 0;
 }
-.addButton{
+
+.modalButton{
     position: relative;
-    background-color: var(--orangeEF);
-    color: var(--whiteFF);
-    border: 1px solid var(--whiteBord);
     margin-right: 50px;
     z-index: 1;
     font-size: 14px;
     font-weight: 500;
-    line-height: 16.5px;
+    line-height: 16.6px;
 }
+.saveBtn,.closeBtn,.deleteBtn{
+    display: block;
+    width: 87px;
+    height: 50px;
+    margin-right: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--whiteBord);
+}
+.saveBtn{
+    background-color: var(--orangeEF);
+}
+.closeBtn{
+    background-color: var(--iconsHeadlineTabsButtons);
+}
+.deleteBtn{
+    background-color: var(--statusInactiveDelBtn);
+}
+.addBtn{
+    display: block;
+    height: 50px;
+    margin-right: 30px;
+    border-radius: 5px;
+    color: var(--whiteFF);
+    background-color: var(--orangeEF);
+}
+
 .modalInput{
     width: 500px;
     height: 50px; 
     padding: 20px 15px;
-    color: var(--grayC2)
+    margin-bottom: 35px;
+    border-radius: 5px;
+    border: 1px solid var(--grayDEE);
+    color: var(--textPaginationText);
+
+}
+
+
+/*НАБОР КАСТОМНЫХ СТИЛЕЙ*/
+.ml-auto{
+    margin-left: auto;
+}
+.activeStatus, .inactiveStatus{
+    width: fit-content;
+    height: 30px;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center ;
+    border-radius: 50px;
+}
+.activeStatus{
+    color: var(--orangeEF);
+    background-color: var(--statusActive);
+}
+.inactiveStatus{
+    color: var(--gray63);
+    background-color: var(--statusInactive);
+}
+.btngroup{
+    display: flex;
+    margin-left: auto;
+}
+.deleteIcon, .deleteIcon::after, .editIcon, .editIcon::after{
+    margin-top: -2px;
+    height: 18px;
+    width: 18px;
+}
+.deleteIcon, .editIcon{
+    position: relative;
+    background: none;
+    border: none;
+}
+.deleteIcon:focus, .editIcon:focus{
+    border:none;
+    outline: none;
+}
+.deleteIcon::after{
+    background-image: url("/public/img/DeleteIcon.svg");
+}
+.editIcon::after{
+    background-image: url("/public/img/EditIcon.svg");
+}
+.deleteIcon::after, .editIcon::after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: " ";
+    background-size: cover;
+}
+.deleteIcon:hover, .editIcon:hover{
+    opacity: 0.5;
 }

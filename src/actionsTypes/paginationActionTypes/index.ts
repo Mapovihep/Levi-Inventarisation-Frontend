@@ -1,0 +1,38 @@
+export enum paginationUsersActions {
+    PAGE_BACK_USERS = "PAGE_BACK_USERS",
+    PAGE_FORWARD_USERS = "PAGE_FORWARD_USERS",
+    NEXT_AVAILABLE_USERS = "NEXT_AVAILABLE_USERS",
+    PREVIOUS_AVAILABLE_USERS = "PREVIOUS_AVAILABLE_USERS",
+    SET_PAGE_USERS = "SET_PAGE_USERS",
+    GET_TOTAL_PAGES_USERS = "GET_TOTAL_PAGES_USERS"
+}
+
+
+
+export interface nextPageUsersAC{
+    type: paginationUsersActions.PAGE_FORWARD_USERS
+}
+export interface previousPageUsersAC{
+    type: paginationUsersActions.PAGE_BACK_USERS
+}
+export interface setPageUsersAC{
+    type: paginationUsersActions.SET_PAGE_USERS,
+    payload: number
+    
+}
+
+export enum paginationItemsActions {
+    PAGE_BACK_ITEMS = "PAGE_BACK_ITEMS",
+    PAGE_FORWARD_ITEMS = "PAGE_FORWARD_ITEMS",
+    NEXT_AVAILABLE_ITEMS = "NEXT_AVAILABLE_ITEMS",
+    PREVIOUS_AVAILABLE_ITEMS = "PREVIOUS_AVAILABLE_ITEMS",
+    SET_PAGE_ITEMS = "SET_PAGE_ITEMS"
+}
+
+export enum paginationItemsActions {
+    PAGE_BACK_ROOMS = "PAGE_BACK_ROOMS",
+    PAGE_FORWARD_ROOMS = "PAGE_FORWARD_ROOMS",
+    NEXT_AVAILABLE_ROOMS = "NEXT_AVAILABLE_ROOMS",
+    PREVIOUS_AVAILABLE_ROOMS = "PREVIOUS_AVAILABLE_ROOMS",
+    SET_PAGE_ROOMS = "SET_PAGE_ROOMS"
+}
