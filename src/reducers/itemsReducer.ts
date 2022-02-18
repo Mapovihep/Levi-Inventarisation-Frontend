@@ -2,12 +2,14 @@ import { action, IItem, itemBuilder } from "../interfaces"
 
 interface itemsReducer{
     Items: IItem[],
-    openedModal: boolean
+    openedModal: boolean,
+    FilterOptions: string[]
 }
 
 const initialState : itemsReducer = {
     Items: [itemBuilder("newItem1", new Date().toISOString()), itemBuilder("newItem2", new Date().toISOString())],
-    openedModal: false
+    openedModal: false,
+    FilterOptions: ["newItem1", "newItem2"]
 }
 
 export const itemsReducer = (state = initialState, action:action) =>{

@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router';
 import { Header } from '../Header';
 import { LoginPage } from '../LoginPage';
 import { UsersPage } from '../UsersPage';
+import { AddUserPage } from '../UsersPage/UsersList/AddUserPage';
 
 
 export const MainPage: React.FC = () => {
@@ -16,6 +17,7 @@ export const MainPage: React.FC = () => {
                 <Route path="/Rooms" element={<RoomPage/>}/>
                 <Route path="/Items" element={<ItemsPage/>}/>
                 <Route path="/Users" element={<UsersPage/>}/>
+                <Route path="/Users/Add" element={<AddUserPage/>}/>
                 <Route path="/" element={<RoomPage/>}/>
             </Routes>
         </div>

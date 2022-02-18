@@ -8,12 +8,12 @@ import { Item } from './Item'
 import "./itemsList.css"
 
 interface ItemListProps  {
-    items: IItem[]
+    shortTable: boolean
 }
 interface ItemListState{
     checkboxStyle: string
 }
-export const ItemsList: React.FC<ItemListProps> = () => {
+export const ItemsList: React.FC<ItemListProps> = ({shortTable: s}) => {
     const [state, setState] = useState<ItemListState>({checkboxStyle: "transparent"});
     const items : IItem[] = useAppSelector((s:RootState)=>s.Items.Items)
     const openedModal : boolean = useAppSelector((s:RootState)=>s.Items.openedModal)
@@ -28,22 +28,24 @@ export const ItemsList: React.FC<ItemListProps> = () => {
         setState(s => ({...s, checkboxStyle:  "transparent" }));
     }
     return (
-        <div className="container__ItemsList">
-            <button onClick={openAddBar} className="addItem__ItemsList">+ Add Item</button>
-            <ul className="columnTitles__ItemsList">
-                <li className="columnTitle__ItemsList checkboxLable" style={{backgroundColor:state.checkboxStyle}}>
-                    <input onChange={checkEvent} type="checkbox" className='checkbox'/>
+        <div className={`container__ItemsList`} style={{margin: `${s&&"0 70px 0 130px"}`}}>
+            {!s&&<button onClick={openAddBar} className="addItem__ItemsList">+ Add Item</button>}
+            <ul style={{padding: "0px"}}>
+                <li>
+                    <ul className="columnTitleRow__ItemsList">
+                        {!s&&<li className="columnTitle__ItemsList checkboxLable" style={{backgroundColor:state.checkboxStyle}}>
+                            <input onChange={checkEvent} type="checkbox" className='checkbox'/>
+                        </li>}
+                        <li className={`columnTitle__ItemsList ${s ? "qRCodeBig" : "qRQode"}`}>QR CODE</li>
+                        <li className={`columnTitle__ItemsList ${s ? "nameBig" : "name"}`}><FilterArrows name={"ITEM NAME"} /></li>
+                        <li className={`columnTitle__ItemsList ${s ? "statusBig" : "status"}`}>STATUS</li>
+                        <li className={`columnTitle__ItemsList ${s ? "dateBig" : "date"}`}><FilterArrows name={"DATE"} /></li>
+                        <li className={`columnTitle__ItemsList ${s ? "priceBig" : "price"}`}><FilterArrows name={"PRICE"} /></li>
+                        {!s&&<li className="columnTitle__ItemsList room">ROOM</li>}
+                        <li className={`columnTitle__ItemsList ${s ? "defectsBig": "defects"}`}><FilterArrows name={"NUMBER OF DEFECTS"} /></li>
+                    </ul>
                 </li>
-                <li className="columnTitle__ItemsList">QR CODE</li>
-                <li className="columnTitle__ItemsList"><FilterArrows name={"ITEM NAME"} /></li>
-                <li className="columnTitle__ItemsList">STATUS</li>
-                <li className="columnTitle__ItemsList"><FilterArrows name={"DATE"} /></li>
-                <li className="columnTitle__ItemsList"><FilterArrows name={"PRICE"} /></li>
-                <li className="columnTitle__ItemsList">ROOM</li>
-                <li className="columnTitle__ItemsList"><FilterArrows name={"NUMBER OF DEFECTS"} /></li>
-            </ul>
-            <ul className="contentList__ItemsList">
-                {items.map(item =><Item itemParams={item}/>)}
+                {items.map(item =><Item shortItem={s} itemParams={item}/>)}
             </ul>
             <button className="showMore__ItemsList">Show more</button>
             <AddItemModal  openedModal={openedModal} openAddBar={openAddBar} />

@@ -2,7 +2,7 @@ import {put, call} from 'redux-saga/effects'
 import axios, { AxiosResponse } from 'axios'
 import { IUser } from '../../interfaces'
 import { getUsersAC } from '../../actionCreators/userActionCreator';
-import { getCurrentPageAC, getTotalPageAC, pageType } from '../../actionCreators/paginationActionCreator';
+import { setCurrentPageAC, getTotalPageAC, pageType } from '../../actionCreators/paginationActionCreator';
 
 
 const axiosGetUsers = () =>{
@@ -26,7 +26,7 @@ export default function* getUsersFetch() {
             console.log(response)
             yield put(getUsersAC(response));
             yield put(getTotalPageAC(pageType.USERS));
-            yield put(getCurrentPageAC(pageType.USERS));
+            yield put(setCurrentPageAC(pageType.USERS));
             }
     }catch(e){
         console.log(e)

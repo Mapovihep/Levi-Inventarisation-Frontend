@@ -88,6 +88,20 @@ export const userBuilder = (email: string,
     }
     return newUser;
 }
+
+export const UserMapper = (obj: any) : IUser => {
+    let newUser : IUser ={
+        id: obj.id,
+        email: obj.email,
+        password: obj.password,
+        firstName: obj.firstName||obj.name,
+        lastName: obj.lastName,
+        inventoryLots: obj.inventoryLots,
+        inventorySetups: obj.inventorySetups,
+        phone: obj.phone
+    }
+    return newUser;
+}
 export interface action{
     type: string,
     payload?: any

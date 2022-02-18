@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-left: auto;
+    margin-right: auto;
 }
 .columnWithFilterTitle{
     display: block;

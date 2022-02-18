@@ -24,6 +24,7 @@ export const roomsReducer = (state = initialState, action: action) => {
 
     switch (action.type) {
         case roomPageActions.ADD_ROOMS:
+            filterOptions=[];
             for(let i = 0; i < action.payload.length; i++)
             {
                 filterOptions.push(action.payload[i].name);
@@ -31,7 +32,7 @@ export const roomsReducer = (state = initialState, action: action) => {
             return {...state, Rooms:[...state.Rooms, ...action.payload], FilterOptions: filterOptions};
 
         case roomPageActions.GET_ROOMS:
-            console.log(action);
+            filterOptions=[];
             for(let i = 0; i < action.payload.length; i++)
             {
                 filterOptions.push(action.payload[i].name);

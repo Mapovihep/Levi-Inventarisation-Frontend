@@ -34,11 +34,9 @@
     text-overflow: ellipsis;
 }
 .filterTitle:focus{
-    border: none;
-    outline: none;
+    outline: 2px solid var(--grayPH);
 }
 .filter:hover{
-    background-color: var(--grayEF); 
     outline: 2px solid var(--grayPH);
 }
 .filterOption{

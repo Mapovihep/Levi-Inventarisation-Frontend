@@ -14,6 +14,6 @@
     color: var(--grayPH);
     border: 1px solid var(--whiteBord);
 }
-.search_UsersPage:hover, :focus{
+.search_UsersPage:hover, .search_UsersPage:focus{
     outline: 2px solid var(--grayPH);
 }

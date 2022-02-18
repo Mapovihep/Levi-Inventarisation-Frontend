@@ -10,7 +10,6 @@ interface UserListState  {
     checkboxStyle: string
 }
 export const User: React.FC<UserListProps> = ({userParams}) => {
-    
     const [openedModal, setOpened] = useState<boolean>(false)
     const deleteUser = (E:React.MouseEvent<HTMLButtonElement>) => {
         setOpened(s=>!s);
@@ -28,7 +27,7 @@ export const User: React.FC<UserListProps> = ({userParams}) => {
             <div className="inactiveStatus">Unactive</div>}
         </li>
         <li className="userParam__UserList userSetup">
-            { "User has not Setup"}
+            { "User has not Setup" }
             </li>
         <li className="userParam__UserList userEmail">{userParams.email}</li>
         <li className="userParam__UserList userPhone">

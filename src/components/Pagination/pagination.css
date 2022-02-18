@@ -15,7 +15,11 @@
 .paginationBtn:last-child{
     margin-right: 0px;
 }
-.paginationBtn:hover, :focus{
+.paginationBtn:hover, .paginationBtn:focus{
+    background-color: var(--headerPaginationText);
+    color: var(--whiteFF);
+}
+.currentPage{
     background-color: var(--headerPaginationText);
     color: var(--whiteFF);
 }

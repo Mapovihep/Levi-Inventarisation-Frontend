@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { pageBackAC, pageForwardAC, pageType } from '../../actionCreators/paginationActionCreator';
+import { pageBackAC, pageForwardAC, pageType, setCurrentPageAC } from '../../actionCreators/paginationActionCreator';
 import { useAppDispatch, useAppSelector } from '../../reducers/hooks';
 import { RootState } from '../../store';
 import './pagination.css'
@@ -27,25 +27,25 @@ export const Pagination : React.FC<IPaginationProps> = ({className}) =>{
     const forwardArrowHandler = (E:React.MouseEvent<HTMLButtonElement>) => {
         dispatch(pageForwardAC(pageType.USERS));
     }
-
+    const setLastPageHandler = (E:React.MouseEvent<HTMLButtonElement>) => {
+        dispatch(setCurrentPageAC(pageType.USERS))
+    }
     return(
         <div className={`container__Pagination ${className}`}>
-            {/* { ammountArray.map(x=><button key={Math.random()} className="button__Pagination">{x}</button>) } */}
             {currentPage == 1 ? 
-            <button className='paginationBtn forwardArrow'
+            <button className='paginationBtn backArrow'
                 disabled={true} 
                 onClick={backArrowHandler}>
             </button> :
-            <button className='paginationBtn forwardArrow disabledPaginationBtn' 
+            <button className='paginationBtn backArrow disabledPaginationBtn' 
                 onClick={backArrowHandler}>
             </button>}
-            <button className='paginationBtn' 
-                onClick={backArrowHandler}>
+            <button className='paginationBtn currentPage'>
                 {currentPage}
             </button>
             <span>Of</span>
-            <button className='paginationBtn' 
-                onClick={backArrowHandler}>
+            <button className='paginationBtn'
+                onClick={setLastPageHandler}>
                 {ammount}
             </button>
             {currentPage < ammount ? 

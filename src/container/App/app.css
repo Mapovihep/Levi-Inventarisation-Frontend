@@ -14,7 +14,7 @@
     --primaryButton: #EF8354;
     --whiteBord:#E5E7EA;
     --grayDEE: #DEE1E7;
-    --grayPlaceholder: #B6B7BD;
+    --placeholder: #B6B7BD;
     --textPaginationText: #2D3142;
     --iconsHeadlineTabsButtons: rgb(149, 158, 172);
     --linkSecondary: #6380A6;
@@ -25,6 +25,8 @@
     --headerPaginationText: #2D3142;
     --inactiveTextInTable: #A7AEBA;
     --iconsHeadlinesTableButtons: #959EAC;
+    --input: #D5D6D9;
+    --navigationText: #6C6F7B;
 }
 
 @font-face {
@@ -93,6 +95,10 @@ h3, h4{
 }
 .saveBtn{
     background-color: var(--orangeEF);
+}
+.saveBtn:hover{
+    color: var(--whiteBord);
+    opacity: 0.9;
 }
 .closeBtn{
     background-color: var(--iconsHeadlineTabsButtons);
@@ -175,4 +181,27 @@ h3, h4{
 }
 .deleteIcon:hover, .editIcon:hover{
     opacity: 0.5;
+}
+.editIcon{
+    margin-right: 24px;
+}
+.inputTitle{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--placeholder);
+    display: block;
+    margin-bottom: 10px;
+}
+/* .modalConfirm{
+    width: 100px;
+    height: 70px;
+} */
+.validationErrorMessage{
+    color: var(--gray63);
+    text-decoration: underline;
+}
+.recommendations{
+    color: var(--gray63);
 }

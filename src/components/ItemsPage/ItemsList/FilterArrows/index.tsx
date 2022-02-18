@@ -6,8 +6,8 @@ interface filterArrowProps {
 }
 
 export const FilterArrows: React.FC<filterArrowProps> = ({name}) => {
-    return (<div className="flex">
-        <span className="columnWithFilterTitle">{name}</span>
+    return (<div className="arrWithTitleContainer">
+        <p className="filterWithArrowsTitle">{name}</p>
         <div className="arrowContainer">
             <button className="arrowUp"></button>
             <button className="arrowDown"></button>

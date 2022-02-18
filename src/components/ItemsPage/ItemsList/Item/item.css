@@ -1,23 +1,14 @@
-*{
-    box-sizing: border-box;
-}
-.item__ItemList{
-    display: block;
-    width: 1165px;
-}
 .itemInfo__ItemList{
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     align-items: center;
-    width: 100%;
-    padding: 20px 70px 20px 0;
+    padding: 0 30px;
+    height: 70px;
+    border: 1px solid var(--grayDE);
+    border-top: none;
 }
 .itemParam__ItemList:not(:last-child){
     margin-right: 30px;
 }
-
 .btngroup{
     display: flex;
 }
@@ -47,30 +38,16 @@
 .deleteIcon:hover, .editIcon:hover{
     opacity: 0.5;
 }
-.QRCode{
-    width: 97px;
+
+.addItemToUser__ItemList{
+    background-color: var(--grayDEE);
+    border: none;
 }
-.name{
-    width: 142px;
+.delItemToUser__ItemList{
+    background-color: var(--whiteFF);
+    border: 1px solid var(--textPaginationText);
 }
-.status{
-    width: 98px;
-}
-.date{
-    width: 97px;
-}
-.price{
-    width: 104px;
-}
-.room{
-    width: 75px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.deffects{
-    width: 162px;
-    text-align: right;
-}
-.mr24{
-    margin-right: 24px;
+.delItemToUser__ItemList, .addItemToUser__ItemList{
+    padding: 15px 24px;
+    margin-left: 50px;
 }

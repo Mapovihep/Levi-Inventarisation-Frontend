@@ -1,21 +1,19 @@
-.flex{
+.arrWithTitleContainer{
     display:flex;
-    align-items: top;
-    position: relative;
-    margin-right: 20px;
+    align-items: center;
 }
 .arrowContainer{
     width: 11px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    position: absolute;
-    right: -15px;
-    top:-5px;
+    z-index: 100;
+    margin-top: 10px;
 }
-.columnWithFilterTitle{
+.filterWithArrowsTitle{
     display: block;
-    margin-right: 5px;
+    text-align: center;
+    margin-right: 15px;
 }
 .arrowUp, .arrowDown{
     display: block;

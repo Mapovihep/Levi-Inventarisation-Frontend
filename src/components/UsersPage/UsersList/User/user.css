@@ -12,6 +12,9 @@
     align-items: center;
     width: 100%;
     padding: 0;
+    height: 70px;
+    border-bottom: 1px solid #DEE1E7;
+    padding-left: 100px;
 }
 .userParam__UserList{
     display: flex;
@@ -20,12 +23,16 @@
     line-height: 16.6px;
     color: var(--linkSecondary);
 }
+.userParam__UserList:not(:last-child){
+    margin-right: 60px;
+}
 .userNameWithAvatar{
-    width: 300px;
     display: flex;
     align-items:center;
     justify-content: flex-start;
     position: relative;
+    width: 207px;
+    margin-right: 60px;
 }
 .userNameWithAvatar::before{
     position: absolute;

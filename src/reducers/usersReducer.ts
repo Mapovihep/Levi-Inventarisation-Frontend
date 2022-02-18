@@ -1,6 +1,6 @@
 import { paginationUsersActions } from "../actionsTypes/paginationActionTypes"
 import { authorizationActions, usersPageActions, usersSideBarActions } from "../actionsTypes/userActionTypes"
-import { action, IUser, userBuilder } from "../interfaces"
+import { action, IUser, userBuilder, UserMapper } from "../interfaces"
 
 interface usersReducer{
     Users: IUser[],
@@ -25,12 +25,33 @@ export const initialState: usersReducer = {
     UsersPowerfulObject: {},
     offSet: 10
 }
-
+export interface pageSettings {
+    lastIndex?: number,
+    firstIndex?: number,
+    ammount: IUser[]
+}
 export const usersReducer = (s: usersReducer = initialState, action: action) => {
-    let UsersFromStore = s.Users;
     let { totalPages, offSet } = s;
     let CPN: number;
-    let refillingTheArr = (CPN: number, CPU: IUser[]) : IUser[] => {
+
+    let refillingTheArr = (CPN: number, CPU: IUser[], newOffSet?: boolean) : IUser[] => {
+        if(CPU.length!=0&&newOffSet){
+            let theBeginElIndex = s.Users.indexOf(CPU[0]);
+            let theLastElIndex = s.Users.indexOf(CPU[CPU.length-1])+1;
+            // console.log("первый индекс CPU: " + theBeginElIndex);
+            // console.log("последний индекс CPU: " + theLastElIndex);
+            let lastNumber = theLastElIndex+10;
+            CPU = [];
+            for(let i = theBeginElIndex; i < lastNumber; i++){
+                if(s.Users[i]!==undefined){
+                    CPU.push(s.Users[i]);
+                }
+            }
+            theLastElIndex = s.Users.indexOf(CPU[CPU.length-1]);
+            // console.log("первый индекс CPU: " + theBeginElIndex);
+            // console.log("последний индекс CPU: " + theLastElIndex);
+            return CPU;
+        }
         CPU = [];
         CPN--;
         for(let i = 0; i < offSet; i++){
@@ -52,8 +73,9 @@ export const usersReducer = (s: usersReducer = initialState, action: action) => 
         case usersPageActions.DELETE_USER:
             return s;
         case usersPageActions.GET_USERS:
+                    let users:IUser[] = action.payload.map((x:any) => UserMapper(x))
             return {...s, 
-                Users: action.payload.sort((a:IUser,b:IUser)=>Number(a.email)-Number(b.email))};
+                Users: users.sort((a:IUser,b:IUser)=>Number(a.email)-Number(b.email))};
         case usersPageActions.UPDATE_USER:
             return s;
 
@@ -66,7 +88,6 @@ export const usersReducer = (s: usersReducer = initialState, action: action) => 
                     CPUsers: refillingTheArr(CPN, s.CPUsers)}
             }
             return s;
-
         case paginationUsersActions.PAGE_BACK_USERS:
             CPN = s.CPNumber;
             if(CPN-- > 0){
@@ -76,7 +97,6 @@ export const usersReducer = (s: usersReducer = initialState, action: action) => 
                     CPUsers: refillingTheArr(CPN, s.CPUsers)}
             }
             return s;
-
         case paginationUsersActions.SET_PAGE_USERS:
                 CPN = s.CPNumber;
                 if(CPN <= totalPages && CPN >= 1 ){
@@ -86,9 +106,15 @@ export const usersReducer = (s: usersReducer = initialState, action: action) => 
                         CPUsers: refillingTheArr(CPN, s.CPUsers)}
                 }
                 return s; 
-
         case paginationUsersActions.GET_TOTAL_PAGES_USERS:
             return {...s, totalPages: Math.ceil(s.Users.length/offSet)};
+        case paginationUsersActions.INCREASE_OFFSET_USERS:
+            localStorage.setItem('page', String(s.CPNumber++));
+            return {...s,
+                CPNumber: s.CPNumber,
+                CPUsers: refillingTheArr(s.CPNumber, s.CPUsers, true),
+                offSet: offSet}
+            
         case usersSideBarActions.OPEN_SIDEBAR:
             return {...s, openedModal: action.payload}
         case usersSideBarActions.CLOSE_SIDEBAR:

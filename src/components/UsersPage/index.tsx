@@ -10,38 +10,35 @@ import { Autocomplete, TextField } from '@mui/material';
 import { UsersList } from './UsersList';
 import "./usersPage.css"
 import { closeAddUserSideBar, getUsersFAC, openAddUserSideBar } from '../../actionCreators/userActionCreator';
-import { getCurrentPageAC, getTotalPageAC } from '../../actionCreators/paginationActionCreator';
+import { Link } from 'react-router-dom';
 
-interface IState {
-    filterOptions: string[],
-
-}
 
 export const UsersPage: React.FC = () => {
 
     const dispatch = useAppDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getUsersFAC());
     })
+    
     const openedModal: boolean = useAppSelector((s:RootState)=>s.Users.openedModal);
     const filterOptions: string[] = useAppSelector((s:RootState)=>s.Users.filterOptions);
-
+    console.log(filterOptions)
     const [search, setSearch] = useState<string>(''); 
 
-    const openAddBar = (E : React.MouseEvent<HTMLButtonElement>): void => {
+    const openAddBar = (E : React.MouseEvent<HTMLButtonElement>) : void => {
         !openedModal ? dispatch(openAddUserSideBar()) : dispatch(closeAddUserSideBar());
     }
 
-    const searchInput = (E : React.ChangeEvent<HTMLInputElement>) =>{
-        setSearch(E.target.value);
-    }
+    const searchInput = (E : React.ChangeEvent<HTMLInputElement>) => setSearch(E.target.value);
 
     return(
         <div className="container__UsersPage">
             <h2 className="title__UsersPage">Users</h2>
             <div className="filter__UsersPage">
-                <button className="addRoomBtn_UsersPage addBtn" onClick={openAddBar} >+ Add User</button>
+                <Link to="/Users/Add" style={{listStyle: "none",textDecoration:"none" }}>
+                    <button className="addRoomBtn_UsersPage addBtn" onClick={openAddBar} >+ Add User</button>
+                </Link>
                 <input onChange={searchInput} className="search_UsersPage" placeholder="Search"/>
                 <Filter options={filterOptions}/>
                 <Filter options={filterOptions} customize="ml-auto"/>

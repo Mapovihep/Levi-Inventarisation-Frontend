@@ -1,5 +1,8 @@
 .container__ItemsList{
-    width: 1165px;
+    width: 1420px;
+}
+.contentContainer__ItemsList{
+    padding: 0 70px 0 100px;
 }
 .addItem__ItemsList{
     font-size: 14px;
@@ -12,34 +15,30 @@
     border: 1px solid var(--whiteBord);
     padding: 18px 25px;
 }
-.columnTitles__ItemsList{
-    border: 1px solid var(--whiteE5);
+.columnTitleRow__ItemsList{
     display: flex;
+    padding: 0 30px;
+    height: 73px;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid var(--grayDE);
+}
+.columnTitles__ItemsList{
+    border: 1px solid var(--black2D);
+    display: flex;
+    justify-content: flex-start;
     width: 100%;
-    padding: 30px 30px 29px 30px;
+    padding: 10px;
 }
 .columnTitle__ItemsList{
+    display: block;
     font-size: 16px;
     line-height: 19px;
     color: rgba(79, 93, 117, 0.5);
     position: relative;
 }
-.columnTitle__ItemsList:first-child{
+.columnTitle__ItemsList{
     margin-right: 30px;
-}
-.columnTitle__ItemsList:not(:first-child){
-    margin-right: 60px;
-}
-.columnTitle__ItemsList:not(:first-child)::after{
-    position: absolute;
-    top: -5.5px;
-    right: -30px;
-    content: "";
-    height: 30px;
-    border-right: 1px solid var(--whiteE5)
-}
-.columnTitle__ItemsList:last-child::after{
-    border: none;
 }
 .contentList__ItemsList{
     border: 1px solid var(--whiteE5);
@@ -64,4 +63,48 @@
     height: 20px;
     position: absolute;
     opacity: 0;;
+}
+
+.qRCode{
+    width: 97px;
+}
+.qRCodeBig{
+    width: 157px;
+}
+.name{
+    width: 142px;
+}
+.nameBig{
+    width: 202px;
+}
+.status{
+    width: 128px;
+}
+.statusBig{
+    width: 148px;
+}
+.date{
+    width: 108px;
+}
+.dateBig{
+    width: 158px;
+}
+.price{
+    width: 94px;
+}
+.priceBig{
+    width: 164px;
+}
+.room{
+    width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.defects{
+    width: 162px;
+    text-align: right;
+}
+.defectsBig{
+    width: 191px;
+    text-align: right;
 }

@@ -1,0 +1,21 @@
+.crumbsList{
+    padding: 0;
+}
+.crumbsLink{
+    list-style: none;
+    color:(var(--gray5A));
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 3px;
+    cursor: pointer;
+}
+.crumbsLink:hover #path{
+    text-decoration: underline;
+}
+.crumbsLinkCurrent{
+    color: var(--textPaginationText);
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+}
