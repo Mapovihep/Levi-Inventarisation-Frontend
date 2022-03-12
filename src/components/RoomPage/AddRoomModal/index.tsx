@@ -39,7 +39,7 @@ const AddRoom: React.FC<AddRoomProps> = ({ openedModal, openAddBar}) => {
     return(<Modal
         open={openedModal}
         className="containerAddRoomSideBar__RoomPage">
-        <ul  className="addedRoomsList__RoomPage">
+        <ul className="addedRoomsList__RoomPage">
             <li className="addedRoom__RoomPage">
                 <h2 className="titleAddRoom__RoomPage">Add Room</h2>
             </li>
