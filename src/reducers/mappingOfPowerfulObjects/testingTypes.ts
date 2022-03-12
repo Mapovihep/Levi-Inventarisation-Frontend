@@ -1,4 +1,5 @@
-import { IItem, itemBuilder, userBuilder } from "../../interfaces";
+import { IItem, itemBuilder} from "../../interfaces";
+import { userBuilder } from "../../interfaces/userInterfaces";
 
 export interface withId{
     id: string
@@ -28,8 +29,8 @@ let newUser = userBuilder("1", "1");
 
 let newItem = itemBuilder("item1", "2200.2222")
 let item: SameKeyAsValue<IItem> = { [newItem.id]: newItem }; 
-let user: SameKeyAsValue<IUser> = { [newUser.id]: newUser }; 
-console.log(user);
+// let user: SameKeyAsValue<IUser> = { [newUser.id]: newUser }; 
+// console.log(user);
 console.log(item);
 
 

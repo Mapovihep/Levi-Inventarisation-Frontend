@@ -3,47 +3,66 @@ import { IItem, IUser } from '../../../interfaces'
 import { useAppDispatch, useAppSelector } from '../../../reducers/hooks'
 import { RootState } from '../../../store'
 import { FilterArrows } from './FilterArrows'
-import { Pagination } from '../../Pagination'
+import { Pagination } from '../../AbstractComponents/Pagination'
 import { User } from './User'
 import "./usersList.css"
 import { EmptyListKit } from './EmptyListKit'
 import { increaseOffsetAC, pageType } from '../../../actionCreators/paginationActionCreator'
-import { Autocomplete, Input, TextField } from '@mui/material'
-import { ItemsAccordeon } from './ItemsAccordeon'
-import { AddUserPage } from './AddUserPage'
-import { useLocation } from 'react-router'
 
-interface UserListState{
-    checkboxStyle: string
+interface IUserListProps{
+    columns: string[],
+    status: string,
+    search: string
 }
-export const UsersList: React.FC = () => {
-    const [state, setState] = useState<UserListState>({checkboxStyle: "transparent"});
-    const users : IUser[] = useAppSelector((s:RootState)=>s.Users.CPUsers)
+
+export const UsersList: React.FC<IUserListProps> = ({columns, status, search}) => {
     
-    const openedAddPage : boolean = useAppSelector((s:RootState)=>s.Users.openedModal)
+    const CPUsers : IUser[] = useAppSelector((s:RootState)=>s.Users.CPUsers)
+    const currentPage : number = useAppSelector((s: RootState)=>s.Users.CPNumber);
+    const totalPages : number = useAppSelector((s:RootState)=>Math.ceil(s.Users.totalPages));
+    const allUsers : IUser[] = useAppSelector((s:RootState)=>s.Users.Users);
+
     const dispatch = useAppDispatch();
-    const showMore = (E: React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(increaseOffsetAC(pageType.USERS))
-    }
+
+    const showMore = (E: React.MouseEvent<HTMLButtonElement>) => dispatch(increaseOffsetAC(pageType.USERS));
+
+    const filterByStatus = (status: string) : boolean => status=="Active" ? true : false;
+
     return (
         <div className="container__UsersList">
-            {users.length !== 0 ? <React.Fragment>
+            {CPUsers.length !== 0 ? <React.Fragment>
             <ul className="contentList__UsersList">
                 <li className='columnTitleRow__UsersList'>
+                    {columns.includes('userName')&&
                     <div className="columnTitle__UsersList userName">
-                        <FilterArrows name={"USER NAME"}/>
-                    </div>
-                    <div className="columnTitle__UsersList userStatus">STATUS</div>
+                        <FilterArrows name="USER NAME"/>
+                    </div>}
+                    {columns.includes('userStatus')&&
+                    <div className="columnTitle__UsersList userStatus">STATUS</div>}
+                    {columns.includes('userSetup')&&
                     <div className="columnTitle__UsersList userSetup">
-                        <FilterArrows name={"SETUP"}/>
-                    </div>
-                    <div className="columnTitle__UsersList userEmail">EMAIL</div>
-                    <div className="columnTitle__UsersList userPhone">PHONE</div>
+                        <FilterArrows name="SETUP"/>
+                    </div>}
+                    {columns.includes('userEmail')&&
+                    <div className="columnTitle__UsersList userEmail">EMAIL</div>}
+                    {columns.includes('userPhone')&&
+                    <div className="columnTitle__UsersList userPhone">PHONE</div>}
                 </li>
-                {users.map(user =><User userParams={user} key={Math.random()}/>)}
+                {status==undefined && search=='' ? 
+                CPUsers
+                    .filter(x => x.name.startsWith(search))
+                    .map(user => <User userParams={user} columns={columns} key={Math.random()}/>) 
+                : allUsers
+                    .filter(x => x.name.startsWith(search))
+                    .filter(x => x.isAdmin==filterByStatus(status))
+                    .map(user => <User userParams={user} columns={columns} key={Math.random()}/>)
+                }
             </ul>
             <button className="showMore__UsersList" onClick={showMore}>Show more</button>
-            <Pagination className="pagination__UsersList"></Pagination>
+            <Pagination 
+            className="pagination__UsersList"
+            currentPage={currentPage} 
+            totalPages={totalPages}/>
             </React.Fragment> :
             <EmptyListKit />}
         </div> 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { loginFetchActionCreator, logOutActionCreator } from '../../actionCreators/userActionCreator';
 import { authorizationActions } from '../../actionsTypes/userActionTypes';
-import { userBuilder } from '../../interfaces';
+import { userBuilder } from '../../interfaces/userInterfaces';
 import { useAppDispatch, useAppSelector } from '../../reducers/hooks';
 import { RootState } from '../../store';
 

@@ -5,7 +5,7 @@ interface setupsReducer{
 }
 
 const initialState : setupsReducer = {
-    Setups: [],
+    Setups: [{id:"11", name:"setup1"}, {id:"22", name:"setup2"}, {id:"33", name:"setup3"}, {id:"44", name:"setup4"}],
 }
 
 export const setupsReducer = (state = initialState, action:action) =>{

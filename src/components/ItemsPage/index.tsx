@@ -1,6 +1,4 @@
 import React from 'react';
-import { useAppSelector } from '../../reducers/hooks';
-import { RootState } from '../../store';
 import { CategoryTable } from './CategoryTable';
 import { ItemsList } from './ItemsList';
 import "./itemsPage.css"

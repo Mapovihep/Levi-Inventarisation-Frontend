@@ -1,25 +1,35 @@
 export interface IItem {
-    qRCode: string,
+    qrCode: string,
     name: string,
     status: boolean,
     date: string,
     price: string,
     room: string,
-    deffectsAmmount: number,
+    defects: IDefect[],
     createdAt: string,
-    id: string
+    id: string,
+    category: string
+}
+export interface IDefect {
+    name: string,
+    id: string,
+    createdAt: string,
+    image: string,
+    description: string,
+    updateBy: string
 }
 export const itemBuilder = (name: string, Date: string)=>{
     const newItem: IItem = {
         id: "11111111111",
-        qRCode: name.substring(7),
+        qrCode: name.substring(7),
         name: name,
         status: false,
         date: Date,
         price: name.substring(7),
         room: name.substring(7),
-        deffectsAmmount: 0,
-        createdAt: "now"
+        defects: [],
+        createdAt: "now",
+        category: "furniture"
     }
     return newItem;
 }
@@ -49,60 +59,36 @@ export interface IDepartment{
 export interface ISetup{
     id: string,
     name: string,
-    category: string,
-    roomname: string,
-    ownerId: string,
-    defects: string,
-    updatedBy: string,
-    updatedAt: string,
-    inventoryLots: IItem[]
+    category?: string,
+    roomname?: string,
+    ownerId?: string,
+    defects?: string,
+    updatedBy?: string,
+    updatedAt?: string,
+    inventoryLots?: IItem[]
 }
 
 export interface IUser{
     id: string,
     email: string,
     password: string,
-    firstName: string,
+    name: string,
     lastName: string,
-    phone?: string,
-    isAdmin?: boolean,
+    phone: string,
     updatedBy?: string,
     updatedAt?: string,
     inventoryLots: IItem[],
     inventorySetups: ISetup[],
-    status?: boolean
-}
-export const userBuilder = (email: string, 
-    password: string,
-    firstName?: string, 
-    lastName?: string,) =>{
-    const newUser : IUser ={
-        id: "111111111111111111111111",
-        email: email,
-        password: password,
-        firstName: firstName||"",
-        lastName: lastName||"",
-        inventoryLots: [],
-        inventorySetups: [],
-        phone: "8888888888"
-    }
-    return newUser;
+    isAdmin: boolean
 }
 
-export const UserMapper = (obj: any) : IUser => {
-    let newUser : IUser ={
-        id: obj.id,
-        email: obj.email,
-        password: obj.password,
-        firstName: obj.firstName||obj.name,
-        lastName: obj.lastName,
-        inventoryLots: obj.inventoryLots,
-        inventorySetups: obj.inventorySetups,
-        phone: obj.phone
-    }
-    return newUser;
-}
+
 export interface action{
     type: string,
     payload?: any
+}
+
+export interface ICategory{
+    name: string,
+    inventoryLots: IItem[]
 }

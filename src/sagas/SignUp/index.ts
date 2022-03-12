@@ -2,7 +2,7 @@
 import {put, call} from 'redux-saga/effects'
 import axios, { AxiosResponse } from 'axios'
 import { signUpActionCreator } from '../../actionCreators/userActionCreator';
-import { IUser, userBuilder } from '../../interfaces';
+import { IUser } from '../../interfaces';
 
 interface requestInfo {
     email: string,
@@ -15,7 +15,7 @@ const axiosSignUp = (user: IUser) =>{
     const request : requestInfo = {
         email: user.email,
         password: user.password,
-        firstName: user.firstName,
+        firstName: user.name,
         lastName: user.lastName
     }
     const headers = {

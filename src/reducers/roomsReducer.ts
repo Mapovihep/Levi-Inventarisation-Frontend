@@ -23,6 +23,7 @@ export const roomsReducer = (state = initialState, action: action) => {
 
 
     switch (action.type) {
+        
         case roomPageActions.ADD_ROOMS:
             filterOptions=[];
             for(let i = 0; i < action.payload.length; i++)
@@ -38,12 +39,14 @@ export const roomsReducer = (state = initialState, action: action) => {
                 filterOptions.push(action.payload[i].name);
             }
             return {...state, Rooms:[...action.payload], FilterOptions: filterOptions};
+
         case roomPageActions.DELETE_ROOM:
             index = allRooms.findIndex(x=>x.id == action.payload);
             allRooms.splice(index, 1);
             filterOptions = [];
             allRooms.forEach(x => filterOptions.push(x.name));
             return {...state, Rooms: [...allRooms], FilterOptions: filterOptions};
+
         case roomPageActions.UPDATE_ROOM:
             console.log(action.payload)
             index = allRooms.findIndex(x=>x.id==action.payload.id);

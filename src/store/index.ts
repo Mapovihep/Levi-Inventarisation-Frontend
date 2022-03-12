@@ -3,13 +3,13 @@ import createSagaMiddleware from '@redux-saga/core';
 import logger from 'redux-logger';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
-
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
     rootReducer, 
-    applyMiddleware(logger, sagaMiddleware)
+    composeWithDevTools(applyMiddleware(logger,sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
@@ -19,3 +19,5 @@ export default store;
 export type RootState = ReturnType<typeof store.getState>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
+
+

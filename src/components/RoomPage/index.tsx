@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Filter } from '../Filter';
+import { Filter } from '../AbstractComponents/Filter';
 import { Room } from './Room';
 import "./roomPage.css"
 import AddRoom from './AddRoomModal';

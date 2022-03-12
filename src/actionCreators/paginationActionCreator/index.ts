@@ -29,12 +29,13 @@ export const increaseOffsetAC = (str: pageType) =>{
             return {type: "WRONG_ACTION", payload: "increaseOffset Pagination Error!"}
     }
 } 
-export const setCurrentPageAC = (str: pageType) : action => {
+export const setCurrentPageAC = (str: pageType, total?: number) : action => {
     switch (str) {
         case "USERS":
             let page: number = 1;
-            if(localStorage.getItem('page')!=null||undefined||''){
-                page = Number(localStorage.getItem('page'));
+            let writtenPage: number = Number(localStorage.getItem('page'));
+            if((writtenPage!=null||undefined||'')||total!=undefined&&writtenPage<=total){
+                page = writtenPage;
             }
             return {type: paginationUsersActions.SET_PAGE_USERS, payload: page}
         default:

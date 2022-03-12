@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import store from './store/index';
-import {BrowserRouter as Router} from 'react-router-dom'
-import {App} from './container/App';
+import { BrowserRouter as Router } from 'react-router-dom'
+import { App } from './App';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './App/theme';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <ThemeProvider theme={theme}>
+        <Router>
           <App />
-      </Router>
+        </Router>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

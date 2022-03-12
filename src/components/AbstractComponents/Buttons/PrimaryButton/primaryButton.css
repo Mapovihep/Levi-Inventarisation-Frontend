@@ -1,0 +1,22 @@
+.defaultPrimaryButton{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.5px;
+    background-color: var(--primaryButton);
+    color: var(--whiteFF);
+    width: 125px;
+    height: 50px;
+    border: 1px solid var(--whiteFF);
+    padding: 18px 25px;
+}
+.disabledPrimaryButton{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.5px;
+    background-color: var(--primaryButton);
+    color: var(--whiteFF);
+    width: 125px;
+    height: 50px;
+    border: 1px solid var(--whiteFF);
+    padding: 18px 25px;
+}

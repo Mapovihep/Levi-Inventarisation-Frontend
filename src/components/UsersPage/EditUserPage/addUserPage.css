@@ -1,0 +1,134 @@
+/*ADD USER PAGE*//*ADD USER PAGE*//*ADD USER PAGE*//*ADD USER PAGE*//*ADD USER PAGE*/
+.addUserContainer__UsersList{
+    display: flex;
+    margin-bottom: 30px;
+}
+.enterInformation{
+    margin-right: 50px;
+}
+.avatarLeftBlock__UsersList{
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+.circleSectionNumber{
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    margin-right: 15px;
+}
+.circleSectionNumber::before{
+    content: '';
+    background-color:var(--input);
+    top: -25%;
+    left: 0;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    z-index: -10;
+
+}
+.pageName__UsersList{
+    display: block;
+    margin-top: 50px;
+    font-size: 20px;
+}
+.inputAddUser__UsersList{
+    width: 240px;
+    height: 50px;
+    padding: 20px 15px;
+    font-size: 14px;
+    line-height: 17px;
+    border: 1px solid var(--input);
+    border-radius: 5px;
+    position: relative;
+    margin-right: 30px;
+}
+.inputAddUser__UsersList:focus{
+    outline: 2px solid var(--grayPH);
+    background: none;
+}
+.inputAddUser__UsersList:hover{
+    outline: 2px solid var(--grayPH);
+    background: none;
+}
+.inputAddUser__UsersList::-moz-placeholder, .Autocomplete__UsersList::-moz-placeholder {
+    color: var(--input);
+}
+.inputAddUser__UsersList::-webkit-input-placeholder{
+    color: var(--input);
+}
+.inputTitle{
+    margin-bottom: 15px;
+}
+.Autocomplete__UsersList{
+    width: 240px;
+    height: 50px;
+}
+.Autocomplete__UsersList:hover{
+    border: 2px solid var(--input);
+    outline: none;
+}
+.mainInformation__UsersList{
+    display: flex;
+    margin-top: 100px;
+}
+.avatarEmptyAddUser{
+    width: 285px;
+    height: 285px;
+    border: dashed 3px var(--whiteBord);
+    border-radius: 142px;
+    background-image: url(/public/img/EmptyPhotoAddUser.svg);
+    background-position: center center;
+    background-size: 75px 75px;
+    background-repeat: no-repeat;
+}
+.sectionForm__UsersList{
+    display: flex;
+    width: 1620px;
+    position: relative;
+    margin-bottom: 65px;
+}
+.sectionForm__UsersList::after{
+    content: ' ';
+    border-bottom: 1px solid var(--whiteBord);
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -35px;
+}
+.sectionTitle__UsersList{
+    margin-bottom: 25px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--navigationText);
+    position: relative;
+    width: 100%;
+}
+.contactsForm__UsersList{
+    display: flex;
+}
+.saveButton__UsersList{
+    margin-top: 30px;
+}
+
+
+
+
+/*FLEX-ROW*/
+.flex-row{
+    display: flex;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

@@ -11,7 +11,8 @@ import { loginAction,
     deleteUserFetchAction,
     getUsersFetchAction,
     updateUserFetchAction, 
-    usersFetchActions} from '../actionsTypes/userActionTypes';
+    usersFetchActions,
+    getUserByIdFetchAction} from '../actionsTypes/userActionTypes';
 
 import signUpFetch from './SignUp';
 import loginFetch from './LogIn';
@@ -20,6 +21,10 @@ import getUsersFetch from './UsersPage/getUsers';
 import addUserFetch from './UsersPage/addUser';
 import deleteUserFetch from './UsersPage/deleteUser';
 import updateUserFetch from './UsersPage/updateUser';
+import { itemsFetchActions } from '../actionsTypes/itemActionTypes';
+import getItemsFetch from './Items/getAll';
+import getItemsByCategoriesFetch from './Items/getItemsByCategories';
+import getUserByIdFetch from './UsersPage/getUserById';
 
 export function* addRoomsWorker({type, payload}:roomActions.addRoomsAction){
     yield call(addRoomsFetch, payload);
@@ -43,14 +48,23 @@ export function* loginWorker({type, payload}:loginAction){
 export function* getUsersWorker({type}:getUsersFetchAction){
     yield call(getUsersFetch);
 }
-export function* addUsersWorker({type, payload}:addUserFetchAction){
-    yield call(addUserFetch, payload);
+export function* getUserByIdWorker({type, userId}:getUserByIdFetchAction){
+    yield call(getUserByIdFetch, userId);
 }
-export function* deleteUsersWorker({type, payload}:deleteUserFetchAction){
+export function* addUserWorker({type}:addUserFetchAction){
+    yield call(addUserFetch);
+}
+export function* deleteUserWorker({type, payload}:deleteUserFetchAction){
     yield call(deleteUserFetch, payload);
 }
-export function* updateUsersWorker({type, payload}:updateUserFetchAction){
-    yield call(updateUserFetch, payload);
+export function* updateUserWorker({type, userId}:updateUserFetchAction){
+    yield call(updateUserFetch, userId);
+}
+export function* getItemsWorker(){
+    yield call(getItemsFetch)
+}
+export function* getItemsByCategoryWorker(){
+    yield call(getItemsByCategoriesFetch)
 }
 
 export function* watcherSaga(){
@@ -61,10 +75,14 @@ export function* watcherSaga(){
     yield takeEvery(authorizationActions.SIGN_UP_FETCH, signUpWorker);
     yield takeEvery(authorizationActions.LOG_IN_FETCH, loginWorker);
     yield takeEvery(usersFetchActions.GET_USERS_FETCH, getUsersWorker);
-    yield takeEvery(usersFetchActions.ADD_USERS_FETCH, loginWorker);
-    yield takeEvery(usersFetchActions.DELETE_USER_FETCH, loginWorker);
-    yield takeEvery(usersFetchActions.UPDATE_USER_FETCH, loginWorker);
+    yield takeEvery(usersFetchActions.GET_USER_BY_ID_FETCH, getUserByIdWorker);
+    yield takeEvery(usersFetchActions.ADD_USERS_FETCH, addUserWorker);
+    yield takeEvery(usersFetchActions.DELETE_USER_FETCH, deleteUserWorker);
+    yield takeEvery(usersFetchActions.UPDATE_USER_FETCH, updateUserWorker);
+    yield takeEvery(itemsFetchActions.GET_ITEMS_FETCH, getItemsWorker);
+    yield takeEvery(itemsFetchActions.GET_ITEMS_BY_CATEGORIES_FETCH, getItemsByCategoryWorker);
 }
+
 export default function* rootSaga(){
     yield watcherSaga();
 }

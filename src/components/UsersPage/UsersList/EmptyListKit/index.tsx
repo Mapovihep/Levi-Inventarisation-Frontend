@@ -20,8 +20,8 @@ export const EmptyListKit: React.FC = () => {
                 <div className="grayRectangle__EmptyListKit right"></div>
             </div>
             <button className="addButtonWithX"></button>
-            <h2 className="title__EmptyListKit">You don't have setups</h2>
-            <p className="message__EmptyListKit">Add setup and select items for it</p>
+            <h2 className="title__EmptyListKit">You don't have users</h2>
+            <p className="message__EmptyListKit">Add user and select items for it</p>
         </React.Fragment>
     )
 }

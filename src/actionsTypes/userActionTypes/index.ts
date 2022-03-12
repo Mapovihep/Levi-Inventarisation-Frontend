@@ -1,4 +1,4 @@
-import { IUser } from "../../interfaces";
+import { IItem, IUser } from "../../interfaces";
 
 export enum authorizationActions {
     SIGN_UP_FETCH = "SIGN_UP_FETCH",
@@ -20,12 +20,18 @@ export interface loginAction{
 export enum usersFetchActions {
     ADD_USERS_FETCH = "ADD_USERS_FETCH",
     GET_USERS_FETCH = "GET_USERS_FETCH",
+    GET_USER_BY_ID_FETCH = "GET_USER_BY_ID_FETCH",
     DELETE_USER_FETCH = "DELETE_USER_FETCH",
     UPDATE_USER_FETCH = "UPDATE_USER_FETCH",
 }
 export enum usersPageActions {
-    ADD_USERS = "ADD_USERS",
+    ADD_USER_INFO = "ADD_USER_INFO",
+    ADD_ITEM_TO_USER = "ADD_ITEM_TO_USER",
+    DELETE_ITEM_FROM_USER = "DELETE_ITEM_FROM_USER",
+    ADD_SETUP_TO_USER = "ADD_SETUP_TO_USER",
+    DELETE_SETUP_FROM_USER = "DELETE_SETUP_FROM_USER",
     GET_USERS = "GET_USERS",
+    GET_USER_BY_ID = "GET_USER_BY_ID",
     DELETE_USER = "DELETE_USER",
     UPDATE_USER = "UPDATE_USER",
 }
@@ -41,13 +47,37 @@ export interface getUsersFetchAction {
     type: string
 }
 
+export interface getUserByIdPageAction {
+    type: string,
+    payload: IUser
+}
+export interface getUserByIdFetchAction {
+    type: string,
+    userId: string
+}
+
 export interface addUserPageAction {
     type: string,
     payload: IUser
 }
+export interface addInfoToUserPageAction{
+    type: usersPageActions.ADD_USER_INFO,
+    payload: string
+}
+export interface addItemToUserPageAction{
+    type: usersPageActions.ADD_ITEM_TO_USER,
+    payload: string[]
+}
+export interface addItemToUserPageAction{
+    type: usersPageActions.ADD_ITEM_TO_USER,
+    payload: string[]
+}
+export interface addSetupToUserPageAction{
+    type: usersPageActions.ADD_SETUP_TO_USER,
+    payload: string
+}
 export interface addUserFetchAction {
-    type: string,
-    payload: IUser
+    type: string
 }
 
 export interface updateUserPageAction {
@@ -56,8 +86,9 @@ export interface updateUserPageAction {
 }
 export interface updateUserFetchAction {
     type: string,
-    payload: IUser
+    userId: string
 }
+
 export interface deleteUserPageAction {
     type: string,
     payload: string

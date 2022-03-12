@@ -1,3 +1,4 @@
+import { CollectionsOutlined } from '@mui/icons-material'
 import React, { useState } from 'react'
 import { IItem } from '../../../interfaces'
 import { useAppDispatch, useAppSelector } from '../../../reducers/hooks'
@@ -8,19 +9,34 @@ import { Item } from './Item'
 import "./itemsList.css"
 
 interface ItemListProps  {
-    shortTable: boolean
+    itemsByCategory?: IItem[],
+    shortTable: boolean,
+    addItemToUser?: (E:React.MouseEvent, item:IItem) => void,
+    addedToUserItems?: IItem[]
 }
 interface ItemListState{
     checkboxStyle: string
 }
-export const ItemsList: React.FC<ItemListProps> = ({shortTable: s}) => {
+export const ItemsList: React.FC<ItemListProps> = ({shortTable: short, itemsByCategory, addItemToUser, addedToUserItems }) => {
+    
     const [state, setState] = useState<ItemListState>({checkboxStyle: "transparent"});
     const items : IItem[] = useAppSelector((s:RootState)=>s.Items.Items)
     const openedModal : boolean = useAppSelector((s:RootState)=>s.Items.openedModal)
     const dispatch = useAppDispatch();
-
+    const compare = (item: IItem, arr: IItem[]|undefined) : boolean => {
+        if(item!=undefined&&arr!=undefined){
+            for(let el of arr){
+                if(el.id == item.id){
+                    return true
+                }
+            }
+            return false;
+        }
+        return false;
+    }
     const openAddBar = (E: React.MouseEvent<HTMLButtonElement>): void => {
-        !openedModal ? dispatch({type: "OPEN_ADD_ITEM_SIDEBAR", payload: true}) : dispatch({type: "OPEN_ADD_ITEM_SIDEBAR", payload: false})
+        !openedModal ? dispatch({type: "OPEN_ADD_ITEM_SIDEBAR", payload: true}) 
+        : dispatch({type: "OPEN_ADD_ITEM_SIDEBAR", payload: false})
     }
     const checkEvent = (E: React.ChangeEvent<HTMLInputElement>) => {
         state.checkboxStyle == "transparent" ? 
@@ -28,24 +44,32 @@ export const ItemsList: React.FC<ItemListProps> = ({shortTable: s}) => {
         setState(s => ({...s, checkboxStyle:  "transparent" }));
     }
     return (
-        <div className={`container__ItemsList`} style={{margin: `${s&&"0 70px 0 130px"}`}}>
-            {!s&&<button onClick={openAddBar} className="addItem__ItemsList">+ Add Item</button>}
+        <div className={`container__ItemsList`} style={{margin: `${short&&"0 70px 0 130px"}`}}>
+            {!short&&<button onClick={openAddBar} className="addItem__ItemsList">+ Add Item</button>}
             <ul style={{padding: "0px"}}>
                 <li>
                     <ul className="columnTitleRow__ItemsList">
-                        {!s&&<li className="columnTitle__ItemsList checkboxLable" style={{backgroundColor:state.checkboxStyle}}>
+                        {!short&&<li className="columnTitle__ItemsList checkboxLable" style={{backgroundColor:state.checkboxStyle}}>
                             <input onChange={checkEvent} type="checkbox" className='checkbox'/>
                         </li>}
-                        <li className={`columnTitle__ItemsList ${s ? "qRCodeBig" : "qRQode"}`}>QR CODE</li>
-                        <li className={`columnTitle__ItemsList ${s ? "nameBig" : "name"}`}><FilterArrows name={"ITEM NAME"} /></li>
-                        <li className={`columnTitle__ItemsList ${s ? "statusBig" : "status"}`}>STATUS</li>
-                        <li className={`columnTitle__ItemsList ${s ? "dateBig" : "date"}`}><FilterArrows name={"DATE"} /></li>
-                        <li className={`columnTitle__ItemsList ${s ? "priceBig" : "price"}`}><FilterArrows name={"PRICE"} /></li>
-                        {!s&&<li className="columnTitle__ItemsList room">ROOM</li>}
-                        <li className={`columnTitle__ItemsList ${s ? "defectsBig": "defects"}`}><FilterArrows name={"NUMBER OF DEFECTS"} /></li>
+                        <li className={`columnTitle__ItemsList ${short ? "qRCodeBig" : "qRQode"}`}>QR CODE</li>
+                        <li className={`columnTitle__ItemsList ${short ? "nameBig" : "name"}`}><FilterArrows name={"ITEM NAME"} /></li>
+                        <li className={`columnTitle__ItemsList ${short ? "statusBig" : "status"}`}>STATUS</li>
+                        <li className={`columnTitle__ItemsList ${short ? "dateBig" : "date"}`}><FilterArrows name={"DATE"} /></li>
+                        <li className={`columnTitle__ItemsList ${short ? "priceBig" : "price"}`}><FilterArrows name={"PRICE"} /></li>
+                        {!short&&<li className="columnTitle__ItemsList room">ROOM</li>}
+                        <li className={`columnTitle__ItemsList ${short ? "defectsBig": "defects"}`}><FilterArrows name={"NUMBER OF DEFECTS"} /></li>
                     </ul>
                 </li>
-                {items.map(item =><Item shortItem={s} itemParams={item}/>)}
+                {itemsByCategory==undefined ? 
+                items.map(item =><Item key={Math.random()} shortItem={short} itemParams={item}/>)
+                : itemsByCategory.map(item =><Item 
+                    addedToUserFlag={compare(item, addedToUserItems)}
+                    key={Math.random()} 
+                    shortItem={short} 
+                    itemParams={item} 
+                    addItemToUser={addItemToUser}/>)
+                }
             </ul>
             <button className="showMore__ItemsList">Show more</button>
             <AddItemModal  openedModal={openedModal} openAddBar={openAddBar} />

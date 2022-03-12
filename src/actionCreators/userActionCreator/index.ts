@@ -11,9 +11,12 @@ import { authorizationActions,
     updateUserFetchAction,
     updateUserPageAction,
     addUserFetchAction,
-    usersSideBarActions
+    usersSideBarActions,
+    getUserByIdFetchAction,
+    getUserByIdPageAction
 } from "../../actionsTypes/userActionTypes"
 import { IUser } from "../../interfaces"
+import { userBuilder } from "../../interfaces/userInterfaces"
 
 export const signUpFetchActionCreator = ( payload: IUser ) : signUpAction =>{
     return {
@@ -60,6 +63,19 @@ export const getUsersAC = (users:IUser[]) : getUsersPageAction => {
         payload: users
     }
 }
+export const getUserByIdFAC = (userId: string) : getUserByIdFetchAction => {
+    return{
+        type: usersFetchActions.GET_USER_BY_ID_FETCH,
+        userId: userId
+    }
+}
+export const getUserByIdAC = (user:IUser) : getUserByIdPageAction => {
+    console.log(user)
+    return{
+        type: usersPageActions.GET_USER_BY_ID,
+        payload: user
+    }
+}
 
 export const deleteUserFAC = ( id:string ) : deleteUserFetchAction => {
     return{
@@ -74,10 +90,10 @@ export const deleteUserAC = ( id: string ) : deleteUserPageAction => {
     }
 }
 
-export const updateUserFAC = (updatedUser:IUser) : updateUserFetchAction => {
+export const updateUserFAC = (userId:string) : updateUserFetchAction => {
     return{
         type: usersFetchActions.UPDATE_USER_FETCH,
-        payload: updatedUser
+        userId: userId
     }
 }
 export const updateUserAC = (updatedUser:IUser) : updateUserPageAction => {
@@ -86,16 +102,43 @@ export const updateUserAC = (updatedUser:IUser) : updateUserPageAction => {
         payload: updatedUser
     }
 }
-export const addUserFAC = (newUser:IUser) : addUserFetchAction =>{
+export const addUserFAC = () : addUserFetchAction =>{
     return{
-        type: usersFetchActions.ADD_USERS_FETCH,
-        payload: newUser
+        type: usersFetchActions.ADD_USERS_FETCH
     }
 }
-export const addUserAC = (newUser:IUser) : addUserPageAction =>{
-    return{
-        type: usersPageActions.ADD_USERS,
-        payload: newUser
+export const addUserAC = (type: string, information: any) : addUserPageAction =>{
+    switch (type) {
+        case 'ADD_INFO':
+            return{
+                type: usersPageActions.ADD_USER_INFO,
+                payload: information
+            }
+        case 'ADD_ITEM':
+            return{
+                type: usersPageActions.ADD_ITEM_TO_USER,
+                payload: information
+            }
+        case 'DELETE_ITEM':
+            return{
+                type: usersPageActions.DELETE_ITEM_FROM_USER,
+                payload: information
+            }
+        case 'ADD_SETUP':
+            return{
+                type: usersPageActions.ADD_SETUP_TO_USER,
+                payload: information
+            }
+        case 'DELETE_SETUP':
+            return{
+                type: usersPageActions.DELETE_SETUP_FROM_USER,
+                payload: information
+            }
+        default:
+            return {
+                type: "unknown_action",
+                payload: userBuilder('Error_User', 'Error_User')
+            }
     }
 }
 

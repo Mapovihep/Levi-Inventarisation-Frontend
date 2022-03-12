@@ -1,8 +1,9 @@
-import {put, call} from 'redux-saga/effects'
+import {put, call, select} from 'redux-saga/effects'
 import axios, { AxiosResponse } from 'axios'
 import { IUser } from '../../interfaces'
 import { getUsersAC } from '../../actionCreators/userActionCreator';
 import { setCurrentPageAC, getTotalPageAC, pageType } from '../../actionCreators/paginationActionCreator';
+import { RootState } from '../../store';
 
 
 const axiosGetUsers = () =>{
@@ -23,10 +24,10 @@ export default function* getUsersFetch() {
         const getUsersResponse: AxiosResponse<IUser[]>  = yield call(axiosGetUsers);
             if(getUsersResponse.status === 200) {
             const response = getUsersResponse.data;
-            console.log(response)
             yield put(getUsersAC(response));
             yield put(getTotalPageAC(pageType.USERS));
-            yield put(setCurrentPageAC(pageType.USERS));
+            let totalPage:number = yield select((s:RootState)=>s.Users.totalPages);
+            yield put(setCurrentPageAC(pageType.USERS, totalPage));
             }
     }catch(e){
         console.log(e)

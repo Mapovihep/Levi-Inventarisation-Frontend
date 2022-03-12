@@ -1,7 +1,7 @@
 import {put, call} from 'redux-saga/effects'
 import axios, { AxiosResponse } from 'axios'
 import { loginActionCreator } from '../../actionCreators/userActionCreator';
-import { IUser, userBuilder } from '../../interfaces';
+import { IUser } from '../../interfaces';
 
 interface requestInfo {
     email: string,
