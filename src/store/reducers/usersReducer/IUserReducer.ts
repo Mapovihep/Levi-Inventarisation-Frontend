@@ -56,7 +56,3 @@ export const initialUserState: IUserState = {
         offSet: 10
     }
 }
-// let CPUUsersTest : IUser[] = []
-//     for(let o = 0; o<10; o++){
-//         CPUUsersTest.push(userBuilder("NewUser"+o, "user@mail.ru"+o, "firstName"+o, "lastName"+o))
-//     }
