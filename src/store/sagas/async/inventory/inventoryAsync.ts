@@ -1,5 +1,6 @@
 import instance from "..";
 import { IInventory } from "../../../../interfaces/inventory";
+import { IInventoryQueryParams } from "../../../reducers/inventoryReducer/IInventoryReducer";
 
 
 class InventoryAsyncRequest {
@@ -9,8 +10,8 @@ class InventoryAsyncRequest {
   getAllInventory = async (): Promise<IInventory[]> => {
     return await instance.get(`/inventory/getAll`);
   };
-  getFilteredInventory = async (filter:string): Promise<IInventory[]> => {
-    return await instance.get(`/inventory/${filter}`);
+  getByQueryInventory = async (pathname:string): Promise<IInventory[]> => {
+    return await instance.get(`/inventory/${pathname}`);
   };
   getFreeInventory = async (): Promise<IInventory[]> => {
     return await instance.get(`/inventory/available`);

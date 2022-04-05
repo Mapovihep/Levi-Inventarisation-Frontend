@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IUser } from '../../../../interfaces'
 import { useAppDispatch } from '../../../../store/reducers/hooks'
-import { DeleteEditBtnGroupModal } from '../Modal'
+import { DeleteEditBtnGroupModalUser } from './DeleteEditBtnGroupModalUser'
 import "./user.css"
 
 interface UserListProps  {
@@ -17,7 +17,6 @@ export const User: React.FC<UserListProps> = ({userParams, columns}) => {
     const [openedModal, setOpened] = useState<boolean>(false)
 
     const deleteUser = (E:React.MouseEvent<HTMLButtonElement>) => {
-        //dispatch(deleteUserFAC(userParams.id));
         setOpened(s=>!s);
     }
     const editUser = (E:React.MouseEvent<HTMLButtonElement>) => {
@@ -42,7 +41,7 @@ export const User: React.FC<UserListProps> = ({userParams, columns}) => {
         {columns.includes('userPhone')&&<li className="userParam__UserList userPhone">
             { userParams.phone }
         </li>}
-        <DeleteEditBtnGroupModal
+        <DeleteEditBtnGroupModalUser
             userId={userParams.id}
             deleteUser={deleteUser}
             setOpened={()=>setOpened(s=>!s)}

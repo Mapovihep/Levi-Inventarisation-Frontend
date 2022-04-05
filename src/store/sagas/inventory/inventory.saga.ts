@@ -1,11 +1,13 @@
 import { SagaIterator } from "redux-saga";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, select, takeLatest } from "redux-saga/effects";
 import inventoryAsync from "../async/inventory/inventoryAsync";
 import { bindAsyncAction } from "typescript-fsa-redux-saga";
 import { AxiosResponse } from "axios";
 import { Action } from "typescript-fsa";
 import { inventoryAction } from "../../actions/inventory/inventory";
 import { IInventory } from "../../../interfaces/inventory";
+import { IInventoryQueryParams } from "../../reducers/inventoryReducer/IInventoryReducer";
+import { RootState } from "../..";
 
 const addOneInventoryItem = bindAsyncAction(
   inventoryAction.addOneInventory,
@@ -33,12 +35,25 @@ const getOneInventoryById = bindAsyncAction(inventoryAction.getOneInventory, {
   );
   return response.data;
 });
-const filteredInventory = bindAsyncAction(inventoryAction.getFilteredInventory, {
+const byQueryInventory = bindAsyncAction(inventoryAction.getByQueryInventory, {
   skipStartedAction: true,
-})(function* (filter: string): SagaIterator {
+})(function* (queryParams: IInventoryQueryParams): SagaIterator {
+  const {search, enumAscend, ascend, page, offSet, category} = queryParams;
+
+  let pathname = `${page}x${offSet}`
+  if(search!=''){
+    pathname = pathname + `/s=${search}`
+  }
+
+  pathname += '/f=' + enumAscend + '-' + `${String(ascend)}`
+
+  if(category!='All'&&category!=''){
+    pathname += '/c=' + category;
+  }
+
   const response: AxiosResponse<IInventory[]> = yield call(
-    inventoryAsync.getFilteredInventory,
-    filter
+    inventoryAsync.getByQueryInventory,
+    pathname
   );
   return response.data;
 });
@@ -88,9 +103,9 @@ function* getOneInventoryWatcherSaga(){
 }
 function* getFilteredInventoryWatcherSaga(){
   yield takeLatest(
-    inventoryAction.getFilteredInventory.started,
-    (action: Action<string>) => {
-      return filteredInventory(action.payload);
+    inventoryAction.getByQueryInventory.started,
+    (action: Action<IInventoryQueryParams>) => {
+      return byQueryInventory(action.payload);
     }
   );
 }

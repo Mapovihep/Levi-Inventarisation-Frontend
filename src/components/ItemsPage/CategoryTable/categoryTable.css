@@ -2,6 +2,7 @@
     border: 1px solid var(--whiteE5);
     display: flex;
     justify-content: space-between;
+    height: 73px;
     width: 415px;
     padding: 30px 30px 29px 30px;
 }
@@ -11,10 +12,44 @@
     color: rgba(79, 93, 117, 0.5);
 }
 .categoryList__ItemsPage{
-    outline: 1px solid var(--gray5A);
+    padding: 0;
+    border: 1px solid var(--whiteE5);
 }
 .category__ItemsPage{
-    outline: 1px solid red;
+    width: 100%;
+    height: 70px;
+    border: 1px solid var(--grayDEE);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+.category__ItemsPage:hover{
+    background-color:rgba(79, 93, 117, 0.5);
+}
+.category__ItemsPage:active{
+    background-color:rgb(147, 179, 235)
+}
+.categorySelected__ItemsPage{
+    background-color:rgb(186, 201, 226)
+}
+.categoryName__ItemsPage, .categoryAmmount__ItemsPage{
+    color:rgba(79, 93, 117, 1);
+    display: block;
+    width: 50%;
+}
+.categoryName__ItemsPage{
+    margin-right: auto;
+}
+.categoryAmmount__ItemsPage{
+    margin-left: auto;
+    text-align: center;
+}
+.categoryName__ItemsPage:hover{
+    color:rgba(79, 93, 117, 1);
+}
+.categoryAmmount__ItemsPage:hover{
+    color:rgba(79, 93, 117, 1);
 }
 .addCategory__ItemsPage{
     font-size: 14px;

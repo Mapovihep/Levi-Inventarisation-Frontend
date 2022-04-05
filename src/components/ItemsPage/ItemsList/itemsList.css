@@ -1,5 +1,9 @@
 .container__ItemsList{
-    width: 1420px;
+    width: 1165px;
+}
+.containerShort__ItemsList{
+    width: 1165px;
+    padding: 0 70px 0 130px;
 }
 .contentContainer__ItemsList{
     padding: 0 70px 0 100px;
@@ -102,9 +106,9 @@
 }
 .defects{
     width: 162px;
-    text-align: right;
+    text-align: center;
 }
 .defectsBig{
     width: 191px;
-    text-align: right;
+    text-align: center;
 }

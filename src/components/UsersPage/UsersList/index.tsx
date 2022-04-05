@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { IUser } from '../../../interfaces'
-import { RootState } from '../../../store'
 import { FilterArrows } from './FilterArrows'
-import { Pagination } from '../../AbstractComponents/Pagination'
 import { User } from './User'
 import "./usersList.css"
 import { EmptyListKit } from './EmptyListKit'
 import { useAppDispatch, useAppSelector } from '../../../store/reducers/hooks'
-import { userBuilder } from '../../../interfaces/userInterfaces'
 import { useLocation } from 'react-router'
-import { userFetchAction } from '../../../store/actions/user/user'
 import { userEnumAscend } from '../../../store/reducers/usersReducer/IUserReducer'
 
 interface IUserListProps{

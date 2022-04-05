@@ -5,12 +5,15 @@
     height: 70px;
     border: 1px solid var(--grayDE);
     border-top: none;
+    position: relative;
 }
 .itemParam__ItemList:not(:last-child){
     margin-right: 30px;
 }
 .btngroup{
     display: flex;
+    height: 18px;
+    margin-top:-4px;
 }
 .deleteIcon, .deleteIcon::after, .editIcon, .editIcon::after{
     margin-top: -2px;

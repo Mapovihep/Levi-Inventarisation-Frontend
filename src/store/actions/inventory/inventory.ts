@@ -1,6 +1,7 @@
 import { IInventory } from "../../../interfaces/inventory";
 import actionCreatorFactory from "typescript-fsa";
 import { inventoryPageActions } from "../../actionsTypes/inventoryActionTypes";
+import { IInventoryQueryParams } from "../../reducers/inventoryReducer/IInventoryReducer";
 
 const actionCreator = actionCreatorFactory();
 class InventoryActionCreators {
@@ -19,8 +20,8 @@ class InventoryActionCreators {
   getInventoryByCategories = actionCreator.async<void, any[]>(
     inventoryPageActions.GET_INVENTORY_BY_CATEGORIES
   );
-  getFilteredInventory = actionCreator.async<string, IInventory[]>(
-    inventoryPageActions.GET_INVENTORY_FILTERED
+  getByQueryInventory = actionCreator.async<IInventoryQueryParams, IInventory[]>(
+    inventoryPageActions.GET_BY_QUERY_INVENTORY
   );
   updateOneInventory = actionCreator.async<IInventory, IInventory>(
     inventoryPageActions.UPDATE_INVENTORY
@@ -28,6 +29,9 @@ class InventoryActionCreators {
   deleteOneInventory = actionCreator.async<string, string>(
     inventoryPageActions.DELETE_INVENTORY
   );
+  addCategoryToQuery = actionCreator.async<string, void>(
+    inventoryPageActions.ADD_CATEGORY_TO_QUERY
+  )
 }
 
 export const inventoryAction = new InventoryActionCreators();
