@@ -22,15 +22,15 @@ const MenuProps = {
       },
       '&::-webkit-scrollbar-thumb': {
         backgroundColor: '#DEE1E7',
-        border: '3px solid #fff', 
-        borderRadius: '20px', 
+        border: '3px solid #fff',
+        borderRadius: '20px',
       }
     },
   },
 };
 
 interface ISelectAttributes {
-  multiple: boolean,
+  multiple?: boolean,
   placeholderText: string,
   value: any,
   setValue: any,
@@ -44,9 +44,11 @@ const  CustomSelect:React.FC<ISelectAttributes> = ({ multiple, placeholderText, 
     const {
       target: { value },
     } = event;
+    multiple ?
     setValue(
       typeof value === 'string' ? value.split(',') : value,
-    );
+    ) :
+    setValue(value);
   };
 
   return (
@@ -60,7 +62,10 @@ const  CustomSelect:React.FC<ISelectAttributes> = ({ multiple, placeholderText, 
             if (selected.length === 0) {
               return <span style={placeholderStyle}>Search {placeholderText}</span>;
             }
-            return selected.join(', ');
+            if(multiple)
+            return selected.join(', ')
+            else
+            return selected;
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Filter items' }}
@@ -68,11 +73,11 @@ const  CustomSelect:React.FC<ISelectAttributes> = ({ multiple, placeholderText, 
             '&:disabled': { opacity: 0.7 },
           }}
         >
-          {nameArray.map((element) => ( 
+          {nameArray.map((element) => (
             <MenuItem key={element} value={element} sx={{color: '#6c6f7b'}}>
               {multiple&&<Checkbox checked={value.indexOf(element) > -1} />}
               <ListItemText primary={element} />
-            </MenuItem> 
+            </MenuItem>
           ))}
         </Select>
       </FormControl>

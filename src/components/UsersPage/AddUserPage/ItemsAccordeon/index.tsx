@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material"
 import React, { useState } from "react"
-import { IItem } from "../../../../interfaces";
+import { IInventory } from "../../../../interfaces/inventory";
 import { ItemsList } from "../../../ItemsPage/ItemsList";
 import { BtnDeleteEditGroup } from "./BtnDeleteEditGroup";
 import './itemsAccordeon.css'
@@ -9,9 +9,9 @@ interface itemsAccordeonState {
     added: boolean,
 }
 interface itemsAccordeonProps{
-    items: IItem[],
+    items: IInventory[],
 }
-export const ItemsAccordeon: React.FC<itemsAccordeonProps> = ({items}) => { 
+export const ItemsAccordeon: React.FC<itemsAccordeonProps> = ({items}) => {
 
     const [state, setState] = useState<itemsAccordeonState>({added: false});
 
@@ -21,18 +21,18 @@ export const ItemsAccordeon: React.FC<itemsAccordeonProps> = ({items}) => {
                     <path d="M5.25 0L5.25 9.1275L1.0575 4.935L0 6L6 12L12 6L10.9425 4.9425L6.75 9.1275L6.75 0H5.25Z" fill="#5A5A5A"/>
                 </svg>
             </div>;
-    
+
     return(
         <React.Fragment>
             <Accordion style={{border: "1px solid #DEDEDE", marginBottom: "10px"}}>
-                {!state.added ? 
+                {!state.added ?
                 <AccordionSummary
-                expandIcon={AccordeonArrow} 
+                expandIcon={AccordeonArrow}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
                     <p style={{ margin: 'auto 15px auto 10px', fontSize: "20px" }}>{items[0].category}</p>
-                </AccordionSummary> : 
+                </AccordionSummary> :
                 <AccordionSummary
                 aria-controls="panel1a-content"
                 id="panel1a-header"

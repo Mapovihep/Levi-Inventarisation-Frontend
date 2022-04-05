@@ -1,15 +1,5 @@
-export interface IItem {
-    qrCode: string,
-    name: string,
-    status: boolean,
-    date: string,
-    price: string,
-    room: string,
-    defects: IDefect[],
-    createdAt: string,
-    id: string,
-    category: string
-}
+import { IInventory } from "./inventory";
+
 export interface IDefect {
     name: string,
     id: string,
@@ -18,25 +8,11 @@ export interface IDefect {
     description: string,
     updateBy: string
 }
-export const itemBuilder = (name: string, Date: string)=>{
-    const newItem: IItem = {
-        id: "11111111111",
-        qrCode: name.substring(7),
-        name: name,
-        status: false,
-        date: Date,
-        price: name.substring(7),
-        room: name.substring(7),
-        defects: [],
-        createdAt: "now",
-        category: "furniture"
-    }
-    return newItem;
-}
+
 export interface IRoom {
     id: string,
     name: string,
-    inventoryLots: IItem[],
+    inventoryLots: IInventory[],
     inventorySetups: ISetup[],
     createdAt: string
 }
@@ -53,7 +29,7 @@ export const roomBuilder = (name: string, createdAt?: string, id?: string) : IRo
 export interface IDepartment{
     id: string,
     name: string,
-    inventoryLots: IItem[],
+    inventoryLots: IInventory[],
     inventorySetups: ISetup[]
 }
 export interface ISetup{
@@ -65,7 +41,7 @@ export interface ISetup{
     defects?: string,
     updatedBy?: string,
     updatedAt?: string,
-    inventoryLots?: IItem[]
+    inventoryLots?: IInventory[]
 }
 
 export interface IUser{
@@ -77,7 +53,7 @@ export interface IUser{
     phone: string,
     updatedBy?: string,
     updatedAt?: string,
-    inventoryLots: IItem[],
+    inventoryLots: IInventory[],
     inventorySetups: ISetup[],
     isAdmin: boolean
 }
@@ -90,5 +66,5 @@ export interface action{
 
 export interface ICategory{
     name: string,
-    inventoryLots: IItem[]
+    inventoryLots: IInventory[]
 }

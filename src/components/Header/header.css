@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: space-between;
     color: var(--whiteFF);
-    max-width: 1620px; 
+    max-width: 1620px;
     margin: auto;
 }
 .title__Header{
@@ -29,7 +29,7 @@
 .nav_link__Header{
     display: inline-block;
     text-decoration: none;
-    color: var(--gray5A);
+    color: var(--whiteFF);
     font-family: "Rubik";
     font-size: 18px;
     font-weight: 400;

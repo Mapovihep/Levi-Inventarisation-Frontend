@@ -1,12 +1,12 @@
 import { Modal } from '@mui/material';
 import React, { useState } from 'react'
-import { roomFetchActions } from '../../../actionsTypes/roomActionTypes';
 import { IRoom, roomBuilder } from '../../../interfaces';
-import { useAppDispatch } from '../../../reducers/hooks';
+import { roomAction } from '../../../store/actions/rooms/room';
+import { useAppDispatch } from '../../../store/reducers/hooks';
 import "./addRoomModal.css"
 
 interface AddRoomProps {
-    openAddBar?: (E: React.MouseEvent<HTMLButtonElement>) => void,
+    openAddBar: (E: React.MouseEvent<HTMLButtonElement>) => void,
     openedModal: boolean
 }
 interface AddRoomState {
@@ -25,10 +25,8 @@ const AddRoom: React.FC<AddRoomProps> = ({ openedModal, openAddBar}) => {
         setState(s=>({...s, ammount: needed}))
     }
     const handleForm = (E: React.MouseEvent<HTMLButtonElement>):void => {
-        dispatch({type: roomFetchActions.ADD_ROOMS_FETCH, payload: state.ammount});
-        let arr: IRoom[] = [];
-        dispatch({type: "OPEN_ADD_ROOM_SIDEBAR", payload: false});
-        setState(s=>({ammount: []}))
+        dispatch(roomAction.addManyRooms.started(state.ammount.map(x=>x.name)));
+        openAddBar(E);
     }
     const changeName = (E: React.ChangeEvent<HTMLInputElement>):void =>{
         const changedRoom = state.ammount.filter(x=>x.createdAt===E.target.id)[0];

@@ -1,7 +1,5 @@
 import { Modal } from '@mui/material';
 import React, { useState } from 'react'
-import { IItem, itemBuilder } from '../../../../interfaces';
-import { useAppDispatch } from '../../../../reducers/hooks';
 import "./addItemModal.css"
 import { Information } from './Information';
 
@@ -10,16 +8,14 @@ interface AddItemProps {
     openedModal: boolean
 }
 interface AddItemState {
-    ammount: IItem[],
+    ammount: string[],
     newItemName: string
 }
 export const AddItemModal: React.FC<AddItemProps> = ({ openedModal, openAddBar}) => {
     const [state, setState] = useState<AddItemState>({ammount: [], newItemName: ''});
-    const dispatch = useAppDispatch();
 
     const creatingNewRoom = (E: React.MouseEvent<HTMLButtonElement>):void => {
-        const newItem : IItem = itemBuilder('New Item', new Date().toISOString());
-        setState(state=>({...state, ammount: [...state.ammount, newItem]}));
+        setState(state=>({...state, ammount: [...state.ammount, 'New Item']}));
     }
     const deleteName = (Date:string):void =>{
         // const needed : IRoom[] = state.ammount.filter(x=>x.CreatedAt!==Date);

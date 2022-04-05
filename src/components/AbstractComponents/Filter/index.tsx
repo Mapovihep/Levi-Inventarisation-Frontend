@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useAppSelector } from '../../../reducers/hooks';
+import { useAppSelector } from '../../../store/reducers/hooks';
 import { RootState } from '../../../store';
 import "./filter.css"
 
 interface IPropsFilter {
-    options: string[],
     customize?: string
 }
 interface IPointsFilter{
@@ -13,15 +12,15 @@ interface IPointsFilter{
     flag: boolean,
 }
 
-export const Filter: React.FC<IPropsFilter> = ({options, customize}) => {
-    
+export const Filter: React.FC<IPropsFilter> = ({ customize }) => {
+
     const [filterValue, setFilterValue] = useState<string>('');
-    const filterOptions : string[] = useAppSelector((s:RootState) => s.Rooms.FilterOptions);
+    const filterOptions : string[] | null = useAppSelector((s:RootState) => s.Rooms.filterOptions);
     const [opened, setOpened] = useState(false);
 
     const clickHandler = (E?: React.SyntheticEvent<EventTarget>) => {
         if(E?.isPropagationStopped){
-        setOpened(s=>!s); 
+        setOpened(s=>!s);
         }
     }
 
@@ -30,36 +29,36 @@ export const Filter: React.FC<IPropsFilter> = ({options, customize}) => {
         console.log(el);
     }
     const searchNecessary = (E: React.ChangeEvent<HTMLInputElement>) => setFilterValue(E.target.value);
-    
+
     return (
     <div onClick={E=>clickHandler(E)} className={"filter " + customize}>
         <input
-        onChange={searchNecessary} 
-        className="filterTitle" 
+        onChange={searchNecessary}
+        className="filterTitle"
         placeholder="Select filter options"
         />
         {opened&&
         <ul className="filterOptions">
-            {filterOptions.length!=0 ? 
+            {filterOptions!= null ?
             filterOptions.filter(x=>x.includes(filterValue)).map(x=>
-                    <label key={Math.random()} 
+                    <label key={Math.random()}
                         htmlFor={x}>
                         <li className="filterOption" onClick={e=>e.stopPropagation()}>
                             <input id={x}
                                 onClick={e=>e.stopPropagation()}
-                                onChange={selectedOption} 
+                                onChange={selectedOption}
                                 style={{marginRight:"12px"}}
-                                className="selectCheck" 
+                                className="selectCheck"
                                 type="checkbox"
                              />
-                             {x.length>=40 ? 
-                             x.substring(0,30)+"..." 
+                             {x.length>=40 ?
+                             x.substring(0,30)+"..."
                              : x}
                         </li>
                     </label>)
                 : <li className="filterOption">
                     There are no needed opportunities
-                </li>} 
+                </li>}
         </ul>}
     </div>)
 }

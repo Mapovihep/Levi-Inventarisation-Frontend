@@ -1,4 +1,3 @@
-import { IItem } from "../../../interfaces";
 
 const compare = (item: any, arr: typeof item[]) : boolean => {
     if(item!=undefined&&arr!=undefined){

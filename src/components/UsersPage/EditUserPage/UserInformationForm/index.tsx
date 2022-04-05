@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { addUserAC, getUserByIdFAC } from "../../../../actionCreators/userActionCreator"
 import { IUser } from "../../../../interfaces"
-import { useAppDispatch, useAppSelector } from "../../../../reducers/hooks"
+import { IUserSend } from "../../../../interfaces/userInterfaces"
 import { RootState } from "../../../../store"
+import { userPageAction } from "../../../../store/actions/user/user"
+import { useAppDispatch, useAppSelector } from "../../../../store/reducers/hooks"
 import { PageValues, validationErrors } from "../../../../validationErrors"
 import { AutocompleteMUI } from "../../../AbstractComponents/AutocompleteMUI"
 import CustomSelect from "../../../AbstractComponents/CustomSelect"
@@ -18,7 +19,7 @@ export const UserInformationForm: React.FC<userInformationFormProps> = ({setBtnS
     const dispatch = useAppDispatch();
     const setups = useAppSelector((state: RootState) => state.Setups.Setups);
 
-    const [userSetups, setUserSetups] = useState([...userInfo.inventorySetups.map(x=>x.name)]);
+    const [userSetups, setUserSetups] = useState(userInfo.inventorySetups.map(x=>x.name));
     const [validation, setValidation] = useState<validationState>({
         validFName: '',
         validLName: '',
@@ -27,31 +28,37 @@ export const UserInformationForm: React.FC<userInformationFormProps> = ({setBtnS
         validPhone: '',
         validForm: false
     });
-    const [{name, lastName, isAdmin, phone, email}, setUser] = useState<editUserState>({...userInfo})
+    const [user, setUser] = useState<IUser>({...userInfo})
 
     useEffect(()=>{
         checkValid();
         setUser({...userInfo})
-    }, [name, lastName, isAdmin, phone, email])
+    }, [user])
 
     useEffect(()=>{
         if(validation.validForm){
             setBtnState(validation.validForm);
-            dispatch(addUserAC("ADD_INFO", 
-            {...{name, lastName, isAdmin, phone, email}, 
-            inventorySetups: userSetups}));
+            dispatch(userPageAction.addInfoToUser.started(user));
         }
     }, [validation, userSetups])
 
-    
-    const checkValid = () => 
+
+    const checkValid = () =>
     {
         setUser({...userInfo});
-        setValidation(s=>({...s, 
-        validForm: s.validFName==''&&s.validLName==''&&s.validEmail=='' &&s.validPhone=='' &&s.validIsAdmin==''
-        &&isAdmin!=undefined &&name.length!=0 &&lastName.length!=0 &&phone.length!=0 &&email.length!=0
+        setValidation(s=>({...s,
+        validForm: s.validFName==''
+        &&s.validLName==''
+        &&s.validEmail==''
+        &&s.validPhone==''
+        &&s.validIsAdmin==''
+        &&user.isAdmin!=undefined
+        &&user.name.length!=0
+        &&user.lastName.length!=0
+        &&user.phone.length!=0
+        &&user.email.length!=0
         })
-         
+
     )}
 
     const addValue = (type: PageValues, value: string) => {
@@ -102,24 +109,24 @@ export const UserInformationForm: React.FC<userInformationFormProps> = ({setBtnS
                                     validatorMessage={validation.validFName}
                                     placeholder="first name"
                                     title="First name"
-                                    initialValue={name}/>
+                                    initialValue={user.name}/>
                                 <FormInputMui addValue={(type: PageValues, value: string)=>addValue(type, value)}
                                     type={PageValues.LAST_NAME}
                                     validatorMessage={validation.validLName}
                                     placeholder="last name"
                                     title="Last name"
-                                    initialValue={lastName}/>
+                                    initialValue={user.lastName}/>
                                 <div className="formItem">
-                                    <AutocompleteMUI 
-                                    options={['Active', 'Unactive']} 
-                                    giveValue={(value:string) => addValue(PageValues.STATUS, value)}  
+                                    <AutocompleteMUI
+                                    options={['Active', 'Unactive']}
+                                    giveValue={(value:string) => addValue(PageValues.STATUS, value)}
                                     type='Status'
                                     validatorMessage={validation.validIsAdmin}
                                     initialValue={userInfo.isAdmin ? 'Active' : 'Unactive'}/>
                                 </div>
                                 <div className="formItem">
                                     <h4 className="inputTitle">Setups</h4>
-                                    <CustomSelect 
+                                    <CustomSelect
                                         multiple
                                         placeholderText="Choose setups"
                                         value={userSetups}
@@ -128,20 +135,20 @@ export const UserInformationForm: React.FC<userInformationFormProps> = ({setBtnS
                                 </div>
                             </form>
                             <h4 className="sectionTitle__UsersList">Contacts</h4>
-                            <form className="contactsForm__UsersList"> 
+                            <form className="contactsForm__UsersList">
                                 <FormInputMui addValue={(type:PageValues, value: string)=>addValue(type, value)}
                                     type={PageValues.PHONE}
                                     validatorMessage={validation.validPhone}
                                     placeholder="+7 (---) -- --"
                                     title="Phone"
-                                    initialValue={phone}>
+                                    initialValue={user.phone}>
                                 </FormInputMui>
                                 <FormInputMui addValue={(type:PageValues, value: string)=>addValue(type, value)}
                                     type={PageValues.EMAIL}
                                     validatorMessage={validation.validEmail}
                                     placeholder="email"
                                     title="Email"
-                                    initialValue={email}>
+                                    initialValue={user.email}>
                                 </FormInputMui>
                             </form>
                         </div>

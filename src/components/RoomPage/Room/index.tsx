@@ -1,29 +1,20 @@
 import React, { useState } from 'react'
 import { IRoom } from '../../../interfaces'
-import { useAppDispatch } from '../../../reducers/hooks'
 import './room.css'
-import {roomFetchActions} from '../../../actionsTypes/roomActionTypes'
-import { roomBuilder } from '../../../interfaces'
-import { EditRoom } from '../EditRoomModal'
+import { Link } from 'react-router-dom'
 
-export const Room: React.FC<IRoom> = ({name, id, createdAt}) => {
+interface RoomState{
+    room: IRoom
+}
+export const Room: React.FC<RoomState> = ({room}) => {
 
-    const [state, setState] = useState({name, id, editMode: false})
-    const [editOpened, setEditOpened] = useState<boolean>(false);
 
-    const openEditBar = (E: React.MouseEvent<HTMLButtonElement>): void =>{
-        setEditOpened(!editOpened);
-    }
     return(
         <li className="container__Room">
-            <EditRoom openedModal={editOpened} 
-                openEditBar={openEditBar}
-                initialName={name} 
-                id={id} 
-                createdAt={createdAt} 
-            />
-            <button onClick={openEditBar} className="editBtn__Room">Edit</button>
-            <h3 className="title__Room">{state.name}</h3> 
+            <Link to={`/Rooms/${room.id}`}>
+                <button className="editBtn__Room">Edit</button>
+            </Link>
+            <h3 className="title__Room">{room.name}</h3>
         </li>
     )
 }

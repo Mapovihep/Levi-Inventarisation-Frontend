@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
-import { getItemsByCategoriesFAC } from '../../../actionCreators/itemsActionCreator'
-import { IItem, IUser } from '../../../interfaces'
-import { useAppSelector } from '../../../reducers/hooks'
+import { IUser } from '../../../interfaces'
 import { RootState } from '../../../store'
 import { BreadCrumbs } from '../../AbstractComponents/BreadCrumbs'
 import { ItemsAccordeon } from './ItemsAccordeon'
 import './addUserPage.css'
 import { UserInformationForm } from './UserInformationForm'
 import { editUserProps } from './interfaceForPageState'
-import { getUserByIdFAC, updateUserFAC } from '../../../actionCreators/userActionCreator'
+import { useAppSelector } from '../../../store/reducers/hooks'
+import { inventoryAction } from '../../../store/actions/inventory/inventory'
+import { userFetchAction } from '../../../store/actions/user/user'
 
 export const EditUserPage: React.FC = () => {
 
     const dispatch = useDispatch();
     const location = useLocation();
-    const itemsByCategories = useAppSelector((s:RootState)=>s.Items.categoriesFiltered);
-    const userInfo: IUser = useAppSelector((s:RootState)=>s.Users.currentUser);
-    
+    const itemsByCategories = useAppSelector((s:RootState)=>s.Inventory.inventoryByCategories);
+    const userInfo: IUser = useAppSelector((s:RootState)=>s.Users.newUser);
+
     useEffect(()=>{
-        dispatch(getItemsByCategoriesFAC());
-        dispatch(getUserByIdFAC(location.pathname.slice(-36)));
+        dispatch(inventoryAction.getInventoryByCategories.started);
+        dispatch(userFetchAction.getOneUser.started(location.pathname.slice(-36)));
     }, [])
 
     const [validation, setValidation] = useState<boolean>(false);
 
     const updateNewUser = () => {
-        dispatch(updateUserFAC(location.pathname.slice(-36)))
+        dispatch(userFetchAction.updateOneUser.started(location.pathname.slice(-36)))
     }
     console.log('render');
     return(<div className="">
                 <BreadCrumbs path={location.pathname}></BreadCrumbs>
-                <UserInformationForm 
-                    setBtnState={(mean: boolean)=>setValidation(mean)} 
+                <UserInformationForm
+                    setBtnState={(mean: boolean)=>setValidation(mean)}
                     userInfo={userInfo}
                     />
                 <div className="addItemsContainer__UsersList">
@@ -41,14 +41,14 @@ export const EditUserPage: React.FC = () => {
                         <div className="circleSectionNumber">2</div>
                         <h3 className="sectionTitle__UsersList">Add Items</h3>
                     </div>
-                    {itemsByCategories.map((x:any)=><ItemsAccordeon 
-                    key={Math.random()} 
-                    items={x} 
+                    {itemsByCategories.map((x:any)=><ItemsAccordeon
+                    key={Math.random()}
+                    items={x}
                     addedToUserItems={userInfo.inventoryLots}
                     />)}
                 </div>
-                <button onClick={updateNewUser} 
-                    disabled={!validation} 
+                <button onClick={updateNewUser}
+                    disabled={!validation}
                     className={`saveButton__UsersList ${validation ? "saveBtn" : "closeBtn"}`}>
                     Update
                 </button>

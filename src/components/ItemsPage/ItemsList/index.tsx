@@ -1,29 +1,29 @@
 import { CollectionsOutlined } from '@mui/icons-material'
 import React, { useState } from 'react'
-import { IItem } from '../../../interfaces'
-import { useAppDispatch, useAppSelector } from '../../../reducers/hooks'
+import { IInventory } from '../../../interfaces/inventory'
 import { RootState } from '../../../store'
+import { useAppDispatch, useAppSelector } from '../../../store/reducers/hooks'
 import { AddItemModal } from './AddItemModal'
 import { FilterArrows } from './FilterArrows'
 import { Item } from './Item'
 import "./itemsList.css"
 
 interface ItemListProps  {
-    itemsByCategory?: IItem[],
+    itemsByCategory?: IInventory[],
     shortTable: boolean,
-    addItemToUser?: (E:React.MouseEvent, item:IItem) => void,
-    addedToUserItems?: IItem[]
+    addItemToUser?: (E:React.MouseEvent, item:IInventory) => void,
+    addedToUserItems?: IInventory[]
 }
 interface ItemListState{
     checkboxStyle: string
 }
 export const ItemsList: React.FC<ItemListProps> = ({shortTable: short, itemsByCategory, addItemToUser, addedToUserItems }) => {
-    
+
     const [state, setState] = useState<ItemListState>({checkboxStyle: "transparent"});
-    const items : IItem[] = useAppSelector((s:RootState)=>s.Items.Items)
-    const openedModal : boolean = useAppSelector((s:RootState)=>s.Items.openedModal)
+    const [openedModal, setOpenedModal] = useState<boolean>(false);
+    const items : IInventory[] = useAppSelector((s:RootState)=>s.Inventory.currentPage);
     const dispatch = useAppDispatch();
-    const compare = (item: IItem, arr: IItem[]|undefined) : boolean => {
+    const compare = (item: IInventory, arr: IInventory[]|undefined) : boolean => {
         if(item!=undefined&&arr!=undefined){
             for(let el of arr){
                 if(el.id == item.id){
@@ -34,12 +34,9 @@ export const ItemsList: React.FC<ItemListProps> = ({shortTable: short, itemsByCa
         }
         return false;
     }
-    const openAddBar = (E: React.MouseEvent<HTMLButtonElement>): void => {
-        !openedModal ? dispatch({type: "OPEN_ADD_ITEM_SIDEBAR", payload: true}) 
-        : dispatch({type: "OPEN_ADD_ITEM_SIDEBAR", payload: false})
-    }
+    const openAddBar = (E: React.MouseEvent<HTMLButtonElement>): void => setOpenedModal(s=>!s);
     const checkEvent = (E: React.ChangeEvent<HTMLInputElement>) => {
-        state.checkboxStyle == "transparent" ? 
+        state.checkboxStyle == "transparent" ?
         setState(s => ({...s, checkboxStyle:  "red" })) :
         setState(s => ({...s, checkboxStyle:  "transparent" }));
     }
@@ -61,13 +58,13 @@ export const ItemsList: React.FC<ItemListProps> = ({shortTable: short, itemsByCa
                         <li className={`columnTitle__ItemsList ${short ? "defectsBig": "defects"}`}><FilterArrows name={"NUMBER OF DEFECTS"} /></li>
                     </ul>
                 </li>
-                {itemsByCategory==undefined ? 
+                {itemsByCategory==undefined ?
                 items.map(item =><Item key={Math.random()} shortItem={short} itemParams={item}/>)
-                : itemsByCategory.map(item =><Item 
+                : itemsByCategory.map(item =><Item
                     addedToUserFlag={compare(item, addedToUserItems)}
-                    key={Math.random()} 
-                    shortItem={short} 
-                    itemParams={item} 
+                    key={Math.random()}
+                    shortItem={short}
+                    itemParams={item}
                     addItemToUser={addItemToUser}/>)
                 }
             </ul>

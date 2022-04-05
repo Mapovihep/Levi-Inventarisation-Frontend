@@ -1,4 +1,4 @@
-import { IItem, ISetup } from "../../../interfaces";
+import { ISetup } from "../../../interfaces";
 
 export interface validationState{
     validFName: string,

@@ -8,6 +8,7 @@ import { LoginPage } from '../LoginPage';
 import { UsersPage } from '../UsersPage';
 import { AddUserPage } from '../UsersPage/AddUserPage';
 import { EditUserPage } from '../UsersPage/EditUserPage';
+import { EditRoomPage } from '../RoomPage/EditRoomPage';
 
 
 export const MainPage: React.FC = () => {
@@ -20,6 +21,7 @@ export const MainPage: React.FC = () => {
                 <Route path="/Users" element={<UsersPage/>}/>
                 <Route path="/Users/Add" element={<AddUserPage/>}/>
                 <Route path="/Users/:id" element={<EditUserPage/>}/>
+                <Route path="/Rooms/:id" element={<EditRoomPage/>}/>
                 <Route path="/" element={<RoomPage/>}/>
             </Routes>
         </div>

@@ -1,9 +1,10 @@
-import { IItem, ISetup, IUser } from ".";
+import { IUser } from ".";
+import { IInventory } from "./inventory";
 
 export enum userTypes{
     TO_SEND = "TO_SEND",
     TO_RECEIVE = "TO_RECEIVE",
-    FOR_PAGE = "FOR_PAGE" 
+    FOR_PAGE = "FOR_PAGE"
 }
 export interface IUserSend{
     id?: string,
@@ -18,10 +19,10 @@ export interface IUserSend{
     inventoryIdList?: string[],
     inventorySetupIdList?: string[],
 }
-export const userBuilder = (email: string, 
+export const userBuilder = (email: string,
     password: string,
-    name?: string, 
-    lastName?: string, 
+    name?: string,
+    lastName?: string,
     phone?: string) =>{
     const newUser : IUser ={
         id: "111111111111111111111111",
@@ -51,7 +52,7 @@ export const userMapper = (obj: any, type: userTypes) : any => {
                 updatedBy: obj.id,
             }
             if(obj.inventoryLots!=undefined&&obj.inventorySetups!=undefined){
-                userToSend.inventoryIdList = obj.inventoryLots.map((x:IItem)=>x.id)
+                userToSend.inventoryIdList = obj.inventoryLots.map((x:IInventory)=>x.id)
                 userToSend.inventorySetupIdList = obj.inventorySetups
             }else{
                 userToSend.inventoryIdList = []
